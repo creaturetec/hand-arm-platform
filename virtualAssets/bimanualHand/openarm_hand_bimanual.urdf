@@ -1,0 +1,1731 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="openarm_hand_bimanual">
+  <link name="world" />
+  <link name="openarm_body_link0">
+    <visual name="openarm_body_link0_visual">
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="meshes/openarm_visual/body_link0.dae" scale="0.001 0.001 0.0015" />
+      </geometry>
+      <material name="openarm_body_link0_material">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="openarm_body_link0_collision">
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="meshes/openarm_collision/body_link0_symp.stl" scale="0.001 0.001 0.0015" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="20.84" />
+      <inertia ixx="4.133" ixy="0.0" ixz="0.0" iyy="4.133" iyz="0.0" izz="0.077" />
+    </inertial>
+  </link>
+  <joint name="openarm_body_link0_mount_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+    <parent link="world" />
+    <child link="openarm_body_link0" />
+  </joint>
+  <link name="openarm_left_base_link">
+    <visual name="openarm_left_base_link_visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_visual/base_link.dae" scale="1 -1 1" />
+      </geometry>
+      <material name="openarm_left_base_link_material">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="openarm_left_base_link_collision">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_collision/base_link.stl" scale="1 -1 1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00253123748061566 0.0258185540330169 2.70658291858903e-05" />
+      <mass value="0.487784887988258" />
+      <inertia ixx="0.000484733990709424" ixy="-1.62770678780767e-07" ixz="4.65761719998324e-09" iyy="0.000682400572197824" iyz="-1.17426513474366e-08" izz="0.000320236101430026" />
+    </inertial>
+  </link>
+  <joint name="openarm_left_base_link_mount_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.031 1.047" />
+    <parent link="openarm_body_link0" />
+    <child link="openarm_left_base_link" />
+  </joint>
+  <link name="openarm_left_link1">
+    <visual name="openarm_left_link1_visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_visual/link1.dae" scale="1 -1 1" />
+      </geometry>
+      <material name="openarm_left_link1_material">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="openarm_left_link1_collision">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_collision/link1.stl" scale="1 -1 1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000900350355624244 0.0444659716892874 2.88441021165683e-05" />
+      <mass value="0.561428544234246" />
+      <inertia ixx="0.000538144986433873" ixy="-4.63056685765756e-06" ixz="2.22975551768159e-08" iyy="0.000373345162254971" iyz="-3.27884751984609e-08" izz="0.000329804343882795" />
+    </inertial>
+  </link>
+  <joint name="openarm_left_joint1" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0.0625 0" />
+    <parent link="openarm_left_base_link" />
+    <child link="openarm_left_link1" />
+    <axis xyz="0 1 0" />
+    <limit effort="40" lower="-3.4907" upper="1.3963" velocity="16.755" />
+  </joint>
+  <link name="openarm_left_link2">
+    <visual name="openarm_left_link2_visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_visual/link2.dae" scale="1 -1 1" />
+      </geometry>
+      <material name="openarm_left_link2_material">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="openarm_left_link2_collision">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_collision/link2.stl" scale="1 -1 1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.0247184924346635 -7.60578399428002e-08 -0.0312643102292087" />
+      <mass value="0.295592749115978" />
+      <inertia ixx="0.000163597219145931" ixy="3.13608197607031e-10" ixz="5.55009912371659e-06" iyy="0.000120429707158439" iyz="-4.00306455289745e-10" izz="8.76628866864578e-05" />
+    </inertial>
+  </link>
+  <joint name="openarm_left_joint2" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0.0600000000000001 0" />
+    <parent link="openarm_left_link1" />
+    <child link="openarm_left_link2" />
+    <axis xyz="-1 0 0" />
+    <limit effort="40" lower="-3.3161" upper="0.17453" velocity="16.755" />
+  </joint>
+  <link name="openarm_left_link3">
+    <visual name="openarm_left_link3_visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_visual/link3.dae" scale="1 1 1" />
+      </geometry>
+      <material name="openarm_left_link3_material">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="openarm_left_link3_collision">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_collision/link3.stl" scale="1 1 1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00300861804638783 -0.000514813312550808 -0.109368241429434" />
+      <mass value="0.850916861288263" />
+      <inertia ixx="0.0010217027340552" ixy="-1.82210543854634e-07" ixz="-5.35782873075177e-05" iyy="0.000903473277290975" iyz="-8.4199828452717e-06" izz="0.000443551676668759" />
+    </inertial>
+  </link>
+  <joint name="openarm_left_joint3" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.0662500000000008" />
+    <parent link="openarm_left_link2" />
+    <child link="openarm_left_link3" />
+    <axis xyz="0 0 -1" />
+    <limit effort="27" lower="-1.5708" upper="1.5708" velocity="5.4454" />
+  </joint>
+  <link name="openarm_left_link4">
+    <visual name="openarm_left_link4_visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_visual/link4.dae" scale="1 1 1" />
+      </geometry>
+      <material name="openarm_left_link4_material">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="openarm_left_link4_collision">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_collision/link4.stl" scale="1 1 1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00310326243752606 -0.00136538979048502 -0.0574601379354351" />
+      <mass value="0.590845933035621" />
+      <inertia ixx="0.000436492657493736" ixy="5.2455675270269e-06" ixz="-1.65547634348731e-06" iyy="0.00040384685548561" iyz="3.18067426068364e-06" izz="0.000228213573513934" />
+    </inertial>
+  </link>
+  <joint name="openarm_left_joint4" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.15375" />
+    <parent link="openarm_left_link3" />
+    <child link="openarm_left_link4" />
+    <axis xyz="0 -1 0" />
+    <limit effort="27" lower="0" upper="2.4435" velocity="5.4454" />
+  </joint>
+  <link name="openarm_left_link5">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.000737188580130584 0.000412406544351845 -0.047093829077211" />
+      <mass value="0.5803968030561" />
+      <inertia ixx="0.000263636157719515" ixy="-3.12744502166655e-06" ixz="7.24104361181618e-07" iyy="0.000315435352726595" iyz="1.41346881493762e-07" izz="0.00016654408109665" />
+    </inertial>
+  </link>
+  <joint name="openarm_left_joint5" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.0955000000000005" />
+    <parent link="openarm_left_link4" />
+    <child link="openarm_left_link5" />
+    <axis xyz="0 0 -1" />
+    <limit effort="7" lower="-1.5708" upper="1.5708" velocity="20.944" />
+  </joint>
+  <link name="openarm_right_base_link">
+    <visual name="openarm_right_base_link_visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_visual/base_link.dae" scale="1 1 1" />
+      </geometry>
+      <material name="openarm_right_base_link_material">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="openarm_right_base_link_collision">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_collision/base_link.stl" scale="1 1 1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00253123748061566 -0.0258185540330169 2.70658291858903e-05" />
+      <mass value="0.487784887988258" />
+      <inertia ixx="0.000484733990709424" ixy="1.62770678780767e-07" ixz="4.65761719998324e-09" iyy="0.000682400572197824" iyz="1.17426513474366e-08" izz="0.000320236101430026" />
+    </inertial>
+  </link>
+  <joint name="openarm_right_base_link_mount_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.031 1.047" />
+    <parent link="openarm_body_link0" />
+    <child link="openarm_right_base_link" />
+  </joint>
+  <link name="openarm_right_link1">
+    <visual name="openarm_right_link1_visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_visual/link1.dae" scale="1 1 1" />
+      </geometry>
+      <material name="openarm_right_link1_material">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="openarm_right_link1_collision">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_collision/link1.stl" scale="1 1 1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000900350355624244 -0.0444659716892874 2.88441021165683e-05" />
+      <mass value="0.561428544234246" />
+      <inertia ixx="0.000538144986433873" ixy="4.63056685765756e-06" ixz="2.22975551768159e-08" iyy="0.000373345162254971" iyz="3.27884751984609e-08" izz="0.000329804343882795" />
+    </inertial>
+  </link>
+  <joint name="openarm_right_joint1" type="revolute">
+    <origin rpy="0 0 0" xyz="0 -0.0625 0" />
+    <parent link="openarm_right_base_link" />
+    <child link="openarm_right_link1" />
+    <axis xyz="0 -1 0" />
+    <limit effort="40" lower="-1.3963" upper="3.4907" velocity="16.755" />
+  </joint>
+  <link name="openarm_right_link2">
+    <visual name="openarm_right_link2_visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_visual/link2.dae" scale="1 1 1" />
+      </geometry>
+      <material name="openarm_right_link2_material">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="openarm_right_link2_collision">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_collision/link2.stl" scale="1 1 1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.0247184924346635 7.60578399428002e-08 -0.0312643102292087" />
+      <mass value="0.295592749115978" />
+      <inertia ixx="0.000163597219145931" ixy="-3.13608197607031e-10" ixz="5.55009912371659e-06" iyy="0.000120429707158439" iyz="4.00306455289745e-10" izz="8.76628866864578e-05" />
+    </inertial>
+  </link>
+  <joint name="openarm_right_joint2" type="revolute">
+    <origin rpy="0 0 0" xyz="0 -0.0600000000000001 0" />
+    <parent link="openarm_right_link1" />
+    <child link="openarm_right_link2" />
+    <axis xyz="-1 0 0" />
+    <limit effort="40" lower="-0.17453" upper="3.3161" velocity="16.755" />
+  </joint>
+  <link name="openarm_right_link3">
+    <visual name="openarm_right_link3_visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_visual/link3.dae" scale="1 1 1" />
+      </geometry>
+      <material name="openarm_right_link3_material">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="openarm_right_link3_collision">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_collision/link3.stl" scale="1 1 1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00300861804638783 -0.000514813312550808 -0.109368241429434" />
+      <mass value="0.850916861288263" />
+      <inertia ixx="0.0010217027340552" ixy="-1.82210543854634e-07" ixz="-5.35782873075177e-05" iyy="0.000903473277290975" iyz="-8.4199828452717e-06" izz="0.000443551676668759" />
+    </inertial>
+  </link>
+  <joint name="openarm_right_joint3" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.0662500000000008" />
+    <parent link="openarm_right_link2" />
+    <child link="openarm_right_link3" />
+    <axis xyz="0 0 -1" />
+    <limit effort="27" lower="-1.5708" upper="1.5708" velocity="5.4454" />
+  </joint>
+  <link name="openarm_right_link4">
+    <visual name="openarm_right_link4_visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_visual/link4.dae" scale="1 1 1" />
+      </geometry>
+      <material name="openarm_right_link4_material">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision name="openarm_right_link4_collision">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/openarm_collision/link4.stl" scale="1 1 1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00310326243752606 -0.00136538979048502 -0.0574601379354351" />
+      <mass value="0.590845933035621" />
+      <inertia ixx="0.000436492657493736" ixy="5.2455675270269e-06" ixz="-1.65547634348731e-06" iyy="0.00040384685548561" iyz="3.18067426068364e-06" izz="0.000228213573513934" />
+    </inertial>
+  </link>
+  <joint name="openarm_right_joint4" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.15375" />
+    <parent link="openarm_right_link3" />
+    <child link="openarm_right_link4" />
+    <axis xyz="0 -1 0" />
+    <limit effort="27" lower="0" upper="2.4435" velocity="5.4454" />
+  </joint>
+  <link name="openarm_right_link5">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.000737188580130584 -0.000412406544351845 -0.047093829077211" />
+      <mass value="0.5803968030561" />
+      <inertia ixx="0.000263636157719515" ixy="3.12744502166655e-06" ixz="7.24104361181618e-07" iyy="0.000315435352726595" iyz="-1.41346881493762e-07" izz="0.00016654408109665" />
+    </inertial>
+  </link>
+  <joint name="openarm_right_joint5" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.0955000000000005" />
+    <parent link="openarm_right_link4" />
+    <child link="openarm_right_link5" />
+    <axis xyz="0 0 -1" />
+    <limit effort="7" lower="-1.5708" upper="1.5708" velocity="20.944" />
+  </joint>
+  <link name="Hand_L_base_link" />
+  <link name="HOUSING-L">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/HOUSING-L.STL" />
+      </geometry>
+      <material name="housing_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/HOUSING-L_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0000111 -0.085871 -0.0003395" rpy="0 0 0" />
+      <mass value="0.5561357" />
+      <inertia ixx="0.0010606" ixy="0.0000006" ixz="0" iyy="0.0004326" iyz="-0.0000165" izz="0.0012833" />
+    </inertial>
+  </link>
+  <link name="WRIST-PALM-L">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/WRIST-PALM-L.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/WRIST-PALM-L_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0000001 0.0098109 -0.0002551" rpy="0 0 0" />
+      <mass value="0.0356302" />
+      <inertia ixx="0.0000063" ixy="0" ixz="0" iyy="0.0000075" iyz="0" izz="0.0000061" />
+    </inertial>
+  </link>
+  <link name="PALM-L">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/PALM-L.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/PALM-L_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0122781 0.038595 0.0020082" rpy="0 0 0" />
+      <mass value="0.1364434" />
+      <inertia ixx="0.0000619" ixy="-0.0000115" ixz="-0.0000014" iyy="0.0000437" iyz="-0.0000038" izz="0.0000993" />
+    </inertial>
+  </link>
+  <link name="F1-L-MCP2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F1-L-MCP2.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F1-L-MCP2_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0051493 0.0066497 0.003465" rpy="0 0 0" />
+      <mass value="0.0034154" />
+      <inertia ixx="0.0000001" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000002" />
+    </inertial>
+  </link>
+  <link name="F1-L-MCP1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F1-L-MCP1.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F1-L-MCP1_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0062613 0.0157265 -0.0117765" rpy="0 0 0" />
+      <mass value="0.0229565" />
+      <inertia ixx="0.0000024" ixy="0" ixz="0" iyy="0.000002" iyz="0.0000008" izz="0.0000021" />
+    </inertial>
+  </link>
+  <link name="F1-L-PIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F1-L-PIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F1-L-PIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0041998 0.0108245 -0.0102906" rpy="0 0 0" />
+      <mass value="0.010446" />
+      <inertia ixx="0.0000007" ixy="0" ixz="0" iyy="0.0000006" iyz="0.0000002" izz="0.0000007" />
+    </inertial>
+  </link>
+  <link name="F1-L-DIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F1-L-DIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F1-L-DIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0041998 0.0088881 -0.0097563" rpy="0 0 0" />
+      <mass value="0.0076488" />
+      <inertia ixx="0.0000004" ixy="0" ixz="0" iyy="0.0000004" iyz="0.0000001" izz="0.0000004" />
+    </inertial>
+  </link>
+  <link name="F2-L-MCP2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F2-L-MCP2.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F2-L-MCP2_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0.0032303 0.0002549" rpy="0 0 0" />
+      <mass value="0.0025219" />
+      <inertia ixx="0.0000002" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000001" />
+    </inertial>
+  </link>
+  <link name="F2-L-MCP1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F2-L-MCP1.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F2-L-MCP1_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0000009 0.0177238 0.0007805" rpy="0 0 0" />
+      <mass value="0.0145312" />
+      <inertia ixx="0.0000022" ixy="0" ixz="0" iyy="0.0000005" iyz="-0.0000001" izz="0.0000024" />
+    </inertial>
+  </link>
+  <link name="F2-L-PIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F2-L-PIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F2-L-PIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0000006 0.0111296 -0.000548" rpy="0 0 0" />
+      <mass value="0.0050184" />
+      <inertia ixx="0.0000003" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000003" />
+    </inertial>
+  </link>
+  <link name="F2-L-DIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F2-L-DIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F2-L-DIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0000009 0.0103728 -0.0010699" rpy="0 0 0" />
+      <mass value="0.0036931" />
+      <inertia ixx="0.0000001" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000002" />
+    </inertial>
+  </link>
+  <link name="F3-L-MCP2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F3-L-MCP2.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F3-L-MCP2_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0000008 0.0032575 0.0002549" rpy="0 0 0" />
+      <mass value="0.0025219" />
+      <inertia ixx="0.0000002" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000001" />
+    </inertial>
+  </link>
+  <link name="F3-L-MCP1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F3-L-MCP1.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F3-L-MCP1_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0000232 0.017751 0.0007805" rpy="0 0 0" />
+      <mass value="0.0145312" />
+      <inertia ixx="0.0000022" ixy="0" ixz="0" iyy="0.0000005" iyz="-0.0000001" izz="0.0000024" />
+    </inertial>
+  </link>
+  <link name="F3-L-PIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F3-L-PIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F3-L-PIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0000512 0.0111568 -0.000548" rpy="0 0 0" />
+      <mass value="0.0050184" />
+      <inertia ixx="0.0000003" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000003" />
+    </inertial>
+  </link>
+  <link name="F3-L-DIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F3-L-DIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F3-L-DIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0000688 0.0104 -0.001145" rpy="0 0 0" />
+      <mass value="0.0036931" />
+      <inertia ixx="0.0000001" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000002" />
+    </inertial>
+  </link>
+  <link name="F4-L-MCP2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F4-L-MCP2.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F4-L-MCP2_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0.0032303 0.0002549" rpy="0 0 0" />
+      <mass value="0.0025219" />
+      <inertia ixx="0.0000002" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000001" />
+    </inertial>
+  </link>
+  <link name="F4-L-MCP1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F4-L-MCP1.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F4-L-MCP1_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0000009 0.0177238 0.0007805" rpy="0 0 0" />
+      <mass value="0.0145312" />
+      <inertia ixx="0.0000022" ixy="0" ixz="0" iyy="0.0000005" iyz="-0.0000001" izz="0.0000024" />
+    </inertial>
+  </link>
+  <link name="F4-L-PIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F4-L-PIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F4-L-PIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0000006 0.0111296 -0.000548" rpy="0 0 0" />
+      <mass value="0.0050184" />
+      <inertia ixx="0.0000003" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000003" />
+    </inertial>
+  </link>
+  <link name="F4-L-DIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F4-L-DIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F4-L-DIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0000543 0.0105111 -0.0011579" rpy="0 0 0" />
+      <mass value="0.0036931" />
+      <inertia ixx="0.0000001" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000002" />
+    </inertial>
+  </link>
+  <link name="F5-L-MCP2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F5-L-MCP2.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F5-L-MCP2_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0.0032303 0.0002549" rpy="0 0 0" />
+      <mass value="0.0025219" />
+      <inertia ixx="0.0000002" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000001" />
+    </inertial>
+  </link>
+  <link name="F5-L-MCP1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F5-L-MCP1.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F5-L-MCP1_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0000009 0.0177238 0.0007805" rpy="0 0 0" />
+      <mass value="0.0145312" />
+      <inertia ixx="0.0000022" ixy="0" ixz="0" iyy="0.0000005" iyz="-0.0000001" izz="0.0000024" />
+    </inertial>
+  </link>
+  <link name="F5-L-PIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F5-L-PIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F5-L-PIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0000006 0.0111296 -0.000548" rpy="0 0 0" />
+      <mass value="0.0050184" />
+      <inertia ixx="0.0000003" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000003" />
+    </inertial>
+  </link>
+  <link name="F5-L-DIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_visual/F5-L-DIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_left_collision/F5-L-DIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0000014 0.0103743 -0.0010705" rpy="0 0 0" />
+      <mass value="0.0036931" />
+      <inertia ixx="0.0000001" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000002" />
+    </inertial>
+  </link>
+  <joint name="base_link_to_HOUSING-L" type="fixed">
+    <parent link="Hand_L_base_link" />
+    <child link="HOUSING-L" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <joint name="WRIST-PALM-L" type="revolute">
+    <parent link="HOUSING-L" />
+    <child link="WRIST-PALM-L" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.785" upper="0.785" effort="12.0" velocity="2.0" />
+    <dynamics damping="0.3000" friction="0.2400" />
+  </joint>
+  <joint name="PALM-L" type="revolute">
+    <parent link="WRIST-PALM-L" />
+    <child link="PALM-L" />
+    <origin xyz="0.016904 0.03005 -0.0003425" rpy="3.1416 0 3.1416" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.22" upper="1.22" effort="10.0" velocity="2.5" />
+    <dynamics damping="0.2000" friction="0.2000" />
+  </joint>
+  <joint name="F1-L-MCP2" type="revolute">
+    <parent link="PALM-L" />
+    <child link="F1-L-MCP2" />
+    <origin xyz="0.039199 0.019548 -0.0035" rpy="3.1416 0 3.1416" />
+    <axis xyz="0.76604 0.64279 0" />
+    <limit lower="-0.35" upper="0.61" effort="6.5" velocity="2.82" />
+    <dynamics damping="0.1152" friction="0.1300" />
+  </joint>
+  <joint name="F1-L-MCP1" type="revolute">
+    <parent link="F1-L-MCP2" />
+    <child link="F1-L-MCP1" />
+    <origin xyz="-0.0049195 0.0066407 0.010162" rpy="2.3078 1.1797 2.2689" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.52" upper="0.785" effort="6.0" velocity="3.84" />
+    <dynamics damping="0.0781" friction="0.1200" />
+  </joint>
+  <joint name="F1-L-PIP" type="revolute">
+    <parent link="F1-L-MCP1" />
+    <child link="F1-L-PIP" />
+    <origin xyz="0.00205 0.030797 -0.027817" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.35" upper="1.31" effort="3.5" velocity="4.88" />
+    <dynamics damping="0.0359" friction="0.0700" />
+  </joint>
+  <joint name="F1-L-DIP" type="revolute">
+    <parent link="F1-L-PIP" />
+    <child link="F1-L-DIP" />
+    <origin xyz="0 0.022214 -0.020162" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.35" upper="1.31" effort="1.7" velocity="4.88" />
+    <dynamics damping="0.0174" friction="0.0340" />
+  </joint>
+  <joint name="F2-L-MCP2" type="revolute">
+    <parent link="PALM-L" />
+    <child link="F2-L-MCP2" />
+    <origin xyz="0.04512 0.078019 0.00395" rpy="3.1416 0 3.1416" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.61" upper="0.61" effort="6.0" velocity="3.59" />
+    <dynamics damping="0.0836" friction="0.1200" />
+  </joint>
+  <joint name="F2-L-MCP1" type="revolute">
+    <parent link="F2-L-MCP2" />
+    <child link="F2-L-MCP1" />
+    <origin xyz="0 0.01 0.00075" rpy="3.1416 0 3.1416" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-0.52" upper="1.57" effort="5.5" velocity="6.15" />
+    <dynamics damping="0.0447" friction="0.1100" />
+  </joint>
+  <joint name="F2-L-PIP" type="revolute">
+    <parent link="F2-L-MCP1" />
+    <child link="F2-L-PIP" />
+    <origin xyz="0 0.043109 0.0016488" rpy="3.1416 0 3.1416" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.92" effort="3.0" velocity="5.65" />
+    <dynamics damping="0.0265" friction="0.0600" />
+  </joint>
+  <joint name="F2-L-DIP" type="revolute">
+    <parent link="F2-L-PIP" />
+    <child link="F2-L-DIP" />
+    <origin xyz="0 0.023 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.22" effort="1.5" velocity="3.59" />
+    <dynamics damping="0.0209" friction="0.0300" />
+  </joint>
+  <joint name="F3-L-MCP2" type="revolute">
+    <parent link="PALM-L" />
+    <child link="F3-L-MCP2" />
+    <origin xyz="0.025553 0.083234 0.00395" rpy="3.1416 0 3.1416" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.61" upper="0.61" effort="6.0" velocity="3.59" />
+    <dynamics damping="0.0836" friction="0.1200" />
+  </joint>
+  <joint name="F3-L-MCP1" type="revolute">
+    <parent link="F3-L-MCP2" />
+    <child link="F3-L-MCP1" />
+    <origin xyz="0 0.01 0.00075" rpy="3.1415927 0 3.1408173" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-0.52" upper="1.57" effort="5.5" velocity="6.15" />
+    <dynamics damping="0.0447" friction="0.1100" />
+  </joint>
+  <joint name="F3-L-PIP" type="revolute">
+    <parent link="F3-L-MCP1" />
+    <child link="F3-L-PIP" />
+    <origin xyz="0 0.043109 0.0016488" rpy="3.1416 0 -3.1416" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.92" effort="3.0" velocity="5.65" />
+    <dynamics damping="0.0265" friction="0.0600" />
+  </joint>
+  <joint name="F3-L-DIP" type="revolute">
+    <parent link="F3-L-PIP" />
+    <child link="F3-L-DIP" />
+    <origin xyz="0 0.023 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.22" effort="1.5" velocity="3.59" />
+    <dynamics damping="0.0209" friction="0.0300" />
+  </joint>
+  <joint name="F4-L-MCP2" type="revolute">
+    <parent link="PALM-L" />
+    <child link="F4-L-MCP2" />
+    <origin xyz="0.0059875 0.078019 0.00395" rpy="3.1416 0 3.1416" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.61" upper="0.61" effort="6.0" velocity="3.59" />
+    <dynamics damping="0.0836" friction="0.1200" />
+  </joint>
+  <joint name="F4-L-MCP1" type="revolute">
+    <parent link="F4-L-MCP2" />
+    <child link="F4-L-MCP1" />
+    <origin xyz="0 0.01 0.00075" rpy="3.1415927 0 3.1415927" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-0.52" upper="1.57" effort="5.5" velocity="6.15" />
+    <dynamics damping="0.0447" friction="0.1100" />
+  </joint>
+  <joint name="F4-L-PIP" type="revolute">
+    <parent link="F4-L-MCP1" />
+    <child link="F4-L-PIP" />
+    <origin xyz="0 0.043109 0.0016488" rpy="3.1416 0 3.1416" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.92" effort="3.0" velocity="5.65" />
+    <dynamics damping="0.0265" friction="0.0600" />
+  </joint>
+  <joint name="F4-L-DIP" type="revolute">
+    <parent link="F4-L-PIP" />
+    <child link="F4-L-DIP" />
+    <origin xyz="-0.0000552 0.022862 0.0000129" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.22" effort="1.5" velocity="3.59" />
+    <dynamics damping="0.0209" friction="0.0300" />
+  </joint>
+  <joint name="F5-L-MCP2" type="revolute">
+    <parent link="PALM-L" />
+    <child link="F5-L-MCP2" />
+    <origin xyz="-0.01361 0.063366 0.00395" rpy="3.1416 0 3.1416" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.61" upper="0.61" effort="6.0" velocity="3.59" />
+    <dynamics damping="0.0836" friction="0.1200" />
+  </joint>
+  <joint name="F5-L-MCP1" type="revolute">
+    <parent link="F5-L-MCP2" />
+    <child link="F5-L-MCP1" />
+    <origin xyz="0 0.01 0.00075" rpy="3.1415927 0 3.1415927" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-0.52" upper="1.57" effort="5.5" velocity="6.15" />
+    <dynamics damping="0.0447" friction="0.1100" />
+  </joint>
+  <joint name="F5-L-PIP" type="revolute">
+    <parent link="F5-L-MCP1" />
+    <child link="F5-L-PIP" />
+    <origin xyz="0 0.043109 0.0016488" rpy="3.1416 0 3.1416" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.92" effort="3.0" velocity="5.65" />
+    <dynamics damping="0.0265" friction="0.0600" />
+  </joint>
+  <joint name="F5-L-DIP" type="revolute">
+    <parent link="F5-L-PIP" />
+    <child link="F5-L-DIP" />
+    <origin xyz="0 0.022994 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.22" effort="1.5" velocity="3.59" />
+    <dynamics damping="0.0209" friction="0.0300" />
+  </joint>
+  <joint name="openarm_left_link5_to_Hand_L_base_link" type="fixed">
+    <origin xyz="0 0 -0.180" rpy="-1.5707963268 0 3.14159265358979" />
+    <parent link="openarm_left_link5" />
+    <child link="Hand_L_base_link" />
+  </joint>
+  <link name="Hand_R_base_link" />
+  <link name="HOUSING-R">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/HOUSING-R.STL" />
+      </geometry>
+      <material name="housing_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/HOUSING-R_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.1837865 -0.0862771 -0.0016055" rpy="0 0 0" />
+      <mass value="0.5561357" />
+      <inertia ixx="0.0010606" ixy="0.0000006" ixz="0" iyy="0.0004326" iyz="-0.0000165" izz="0.0012833" />
+    </inertial>
+  </link>
+  <link name="WRIST-PALM-R">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/WRIST-PALM-R.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/WRIST-PALM-R_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0000026 0.0098149 -0.0002516" rpy="0 0 0" />
+      <mass value="0.0356289" />
+      <inertia ixx="0.0000063" ixy="0" ixz="0" iyy="0.0000075" iyz="0" izz="0.0000061" />
+    </inertial>
+  </link>
+  <link name="PALM-R">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/PALM-R.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/PALM-R_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0146895 0.0384383 -0.0020085" rpy="0 0 0" />
+      <mass value="0.1364399" />
+      <inertia ixx="0.0000619" ixy="-0.0000115" ixz="0.0000014" iyy="0.0000437" iyz="0.0000038" izz="0.0000993" />
+    </inertial>
+  </link>
+  <link name="F1-R-MCP2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F1-R-MCP2.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F1-R-MCP2_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0051493 0.0066497 0.003465" rpy="0 0 0" />
+      <mass value="0.0034154" />
+      <inertia ixx="0.0000001" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000002" />
+    </inertial>
+  </link>
+  <link name="F1-R-MCP1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F1-R-MCP1.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F1-R-MCP1_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0117416 0.0168702 0.0016672" rpy="0 0 0" />
+      <mass value="0.022955" />
+      <inertia ixx="0.0000022" ixy="-0.0000007" ixz="-0.0000003" iyy="0.0000021" iyz="-0.0000003" izz="0.0000023" />
+    </inertial>
+  </link>
+  <link name="F1-R-PIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F1-R-PIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F1-R-PIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0101665 0.011579 0.0018089" rpy="0 0 0" />
+      <mass value="0.010446" />
+      <inertia ixx="0.0000007" ixy="-0.0000002" ixz="-0.0000001" iyy="0.0000006" iyz="-0.0000001" izz="0.0000007" />
+    </inertial>
+  </link>
+  <link name="F1-R-DIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F1-R-DIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F1-R-DIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.009624 0.0095618 0.0010277" rpy="0 0 0" />
+      <mass value="0.0078009" />
+      <inertia ixx="0.0000004" ixy="-0.0000001" ixz="0" iyy="0.0000004" iyz="0" izz="0.0000004" />
+    </inertial>
+  </link>
+  <link name="F2-R-MCP2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F2-R-MCP2.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F2-R-MCP2_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0.0032303 -0.0059951" rpy="0 0 0" />
+      <mass value="0.0025219" />
+      <inertia ixx="0.0000002" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000001" />
+    </inertial>
+  </link>
+  <link name="F2-R-MCP1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F2-R-MCP1.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F2-R-MCP1_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0028991 0.0177237 -0.0006809" rpy="0 0 0" />
+      <mass value="0.0145304" />
+      <inertia ixx="0.0000022" ixy="0" ixz="0" iyy="0.0000005" iyz="0.0000001" izz="0.0000024" />
+    </inertial>
+  </link>
+  <link name="F2-R-PIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F2-R-PIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F2-R-PIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0028992 0.0111292 -0.000448" rpy="0 0 0" />
+      <mass value="0.0050184" />
+      <inertia ixx="0.0000003" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000003" />
+    </inertial>
+  </link>
+  <link name="F2-R-DIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F2-R-DIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F2-R-DIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0054993 0.0103728 -0.0010699" rpy="0 0 0" />
+      <mass value="0.0036931" />
+      <inertia ixx="0.0000001" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000002" />
+    </inertial>
+  </link>
+  <link name="F3-R-MCP2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F3-R-MCP2.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F3-R-MCP2_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0.0032303 -0.0059951" rpy="0 0 0" />
+      <mass value="0.0025219" />
+      <inertia ixx="0.0000002" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000001" />
+    </inertial>
+  </link>
+  <link name="F3-R-MCP1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F3-R-MCP1.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F3-R-MCP1_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0028991 0.0177237 -0.0006809" rpy="0 0 0" />
+      <mass value="0.0145304" />
+      <inertia ixx="0.0000022" ixy="0" ixz="0" iyy="0.0000005" iyz="0.0000001" izz="0.0000024" />
+    </inertial>
+  </link>
+  <link name="F3-R-PIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F3-R-PIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F3-R-PIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0060992 0.0111292 -0.000448" rpy="0 0 0" />
+      <mass value="0.0050184" />
+      <inertia ixx="0.0000003" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000003" />
+    </inertial>
+  </link>
+  <link name="F3-R-DIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F3-R-DIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F3-R-DIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0054993 0.0103728 -0.001045" rpy="0 0 0" />
+      <mass value="0.0036931" />
+      <inertia ixx="0.0000001" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000002" />
+    </inertial>
+  </link>
+  <link name="F4-R-MCP2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F4-R-MCP2.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F4-R-MCP2_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0.0032303 -0.0059951" rpy="0 0 0" />
+      <mass value="0.0025219" />
+      <inertia ixx="0.0000002" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000001" />
+    </inertial>
+  </link>
+  <link name="F4-R-MCP1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F4-R-MCP1.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F4-R-MCP1_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0028991 0.0177237 -0.0006809" rpy="0 0 0" />
+      <mass value="0.0145304" />
+      <inertia ixx="0.0000022" ixy="0" ixz="0" iyy="0.0000005" iyz="0.0000001" izz="0.0000024" />
+    </inertial>
+  </link>
+  <link name="F4-R-PIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F4-R-PIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F4-R-PIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0060992 0.0111292 -0.000448" rpy="0 0 0" />
+      <mass value="0.0050184" />
+      <inertia ixx="0.0000003" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000003" />
+    </inertial>
+  </link>
+  <link name="F4-R-DIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F4-R-DIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F4-R-DIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0054993 0.0103728 -0.001045" rpy="0 0 0" />
+      <mass value="0.0036931" />
+      <inertia ixx="0.0000001" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000002" />
+    </inertial>
+  </link>
+  <link name="F5-R-MCP2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F5-R-MCP2.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F5-R-MCP2_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0.0032303 -0.0059951" rpy="0 0 0" />
+      <mass value="0.0025219" />
+      <inertia ixx="0.0000002" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000001" />
+    </inertial>
+  </link>
+  <link name="F5-R-MCP1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F5-R-MCP1.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F5-R-MCP1_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0029009 0.0177237 -0.0006809" rpy="0 0 0" />
+      <mass value="0.0145304" />
+      <inertia ixx="0.0000022" ixy="0" ixz="0" iyy="0.0000005" iyz="0.0000001" izz="0.0000024" />
+    </inertial>
+  </link>
+  <link name="F5-R-PIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F5-R-PIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F5-R-PIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0060992 0.0111292 -0.000448" rpy="0 0 0" />
+      <mass value="0.0050184" />
+      <inertia ixx="0.0000003" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000003" />
+    </inertial>
+  </link>
+  <link name="F5-R-DIP">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_visual/F5-R-DIP.STL" />
+      </geometry>
+      <material name="white_material">
+        <color rgba="0.247 0.247 0.247 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/hand_right_collision/F5-R-DIP_collision.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.0055016 0.0103744 -0.0010705" rpy="0 0 0" />
+      <mass value="0.0036931" />
+      <inertia ixx="0.0000001" ixy="0" ixz="0" iyy="0.0000001" iyz="0" izz="0.0000002" />
+    </inertial>
+  </link>
+  <joint name="base_link_to_HOUSING-R" type="fixed">
+    <parent link="Hand_R_base_link" />
+    <child link="HOUSING-R" />
+    <origin xyz="-0.18 0 0" rpy="0 0 0" />
+  </joint>
+  <joint name="WRIST-PALM-R" type="revolute">
+    <parent link="HOUSING-R" />
+    <child link="WRIST-PALM-R" />
+    <origin xyz="0.1838 -0.00041 -0.00127" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.785" upper="0.785" effort="12.0" velocity="2.0" />
+    <dynamics damping="0.3000" friction="0.2400" />
+  </joint>
+  <joint name="PALM-R" type="revolute">
+    <parent link="WRIST-PALM-R" />
+    <child link="PALM-R" />
+    <origin xyz="-0.019318 0.030212 -0.0003385" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.22" upper="1.22" effort="10.0" velocity="2.5" />
+    <dynamics damping="0.2000" friction="0.2000" />
+  </joint>
+  <joint name="F1-R-MCP2" type="revolute">
+    <parent link="PALM-R" />
+    <child link="F1-R-MCP2" />
+    <origin xyz="0.0416107 0.0193912 0.0035" rpy="0 0 0" />
+    <axis xyz="0.7660444 -0.6427876 0" />
+    <limit lower="-0.35" upper="0.61" effort="6.5" velocity="2.82" />
+    <dynamics damping="0.1152" friction="0.1300" />
+  </joint>
+  <joint name="F1-R-MCP1" type="revolute">
+    <parent link="F1-R-MCP2" />
+    <child link="F1-R-MCP1" />
+    <origin xyz="0.0050544 0.0068014 0.0101617" rpy="0 0 0" />
+    <axis xyz="-0.2450208 -0.2920044 0.9244989" />
+    <limit lower="-0.52" upper="0.785" effort="6.0" velocity="3.84" />
+    <dynamics damping="0.0781" friction="0.1200" />
+  </joint>
+  <joint name="F1-R-PIP" type="revolute">
+    <parent link="F1-R-MCP1" />
+    <child link="F1-R-PIP" />
+    <origin xyz="0.0250873 0.0300535 0.0139239" rpy="0 0 0" />
+    <axis xyz="-0.2450208 -0.2920044 0.9244989" />
+    <limit lower="-0.35" upper="1.31" effort="3.5" velocity="4.88" />
+    <dynamics damping="0.0359" friction="0.0700" />
+  </joint>
+  <joint name="F1-R-DIP" type="revolute">
+    <parent link="F1-R-PIP" />
+    <child link="F1-R-DIP" />
+    <origin xyz="0.0178277 0.0212462 0.0114355" rpy="0 0 0" />
+    <axis xyz="-0.2450208 -0.2920044 0.9244989" />
+    <limit lower="-0.35" upper="1.31" effort="1.7" velocity="4.88" />
+    <dynamics damping="0.0174" friction="0.0340" />
+  </joint>
+  <joint name="F2-R-MCP2" type="revolute">
+    <parent link="PALM-R" />
+    <child link="F2-R-MCP2" />
+    <origin xyz="0.0475313 0.0778613 0.0023" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.61" upper="0.61" effort="6.0" velocity="3.59" />
+    <dynamics damping="0.0836" friction="0.1200" />
+  </joint>
+  <joint name="F2-R-MCP1" type="revolute">
+    <parent link="F2-R-MCP2" />
+    <child link="F2-R-MCP1" />
+    <origin xyz="0.0029 0.01 -0.0056" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.52" upper="1.57" effort="5.5" velocity="6.15" />
+    <dynamics damping="0.0447" friction="0.1100" />
+  </joint>
+  <joint name="F2-R-PIP" type="revolute">
+    <parent link="F2-R-MCP1" />
+    <child link="F2-R-PIP" />
+    <origin xyz="0 0.043109 -0.0016488" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.92" effort="3.0" velocity="5.65" />
+    <dynamics damping="0.0265" friction="0.0600" />
+  </joint>
+  <joint name="F2-R-DIP" type="revolute">
+    <parent link="F2-R-PIP" />
+    <child link="F2-R-DIP" />
+    <origin xyz="0.0026 0.023 0.0001" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.22" effort="1.5" velocity="3.59" />
+    <dynamics damping="0.0209" friction="0.0300" />
+  </joint>
+  <joint name="F3-R-MCP2" type="revolute">
+    <parent link="PALM-R" />
+    <child link="F3-R-MCP2" />
+    <origin xyz="0.0279652 0.0831041 0.0023" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.61" upper="0.61" effort="6.0" velocity="3.59" />
+    <dynamics damping="0.0836" friction="0.1200" />
+  </joint>
+  <joint name="F3-R-MCP1" type="revolute">
+    <parent link="F3-R-MCP2" />
+    <child link="F3-R-MCP1" />
+    <origin xyz="0.0029 0.01 -0.0056" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.52" upper="1.57" effort="5.5" velocity="6.15" />
+    <dynamics damping="0.0447" friction="0.1100" />
+  </joint>
+  <joint name="F3-R-PIP" type="revolute">
+    <parent link="F3-R-MCP1" />
+    <child link="F3-R-PIP" />
+    <origin xyz="0.0032 0.043109 -0.0016488" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.92" effort="3.0" velocity="5.65" />
+    <dynamics damping="0.0265" friction="0.0600" />
+  </joint>
+  <joint name="F3-R-DIP" type="revolute">
+    <parent link="F3-R-PIP" />
+    <child link="F3-R-DIP" />
+    <origin xyz="-0.0006 0.023 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.22" effort="1.5" velocity="3.59" />
+    <dynamics damping="0.0209" friction="0.0300" />
+  </joint>
+  <joint name="F4-R-MCP2" type="revolute">
+    <parent link="PALM-R" />
+    <child link="F4-R-MCP2" />
+    <origin xyz="0.008399 0.0778613 0.0023" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.61" upper="0.61" effort="6.0" velocity="3.59" />
+    <dynamics damping="0.0836" friction="0.1200" />
+  </joint>
+  <joint name="F4-R-MCP1" type="revolute">
+    <parent link="F4-R-MCP2" />
+    <child link="F4-R-MCP1" />
+    <origin xyz="0.0029 0.01 -0.0056" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.52" upper="1.57" effort="5.5" velocity="6.15" />
+    <dynamics damping="0.0447" friction="0.1100" />
+  </joint>
+  <joint name="F4-R-PIP" type="revolute">
+    <parent link="F4-R-MCP1" />
+    <child link="F4-R-PIP" />
+    <origin xyz="0.0032 0.043109 -0.0016488" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.92" effort="3.0" velocity="5.65" />
+    <dynamics damping="0.0265" friction="0.0600" />
+  </joint>
+  <joint name="F4-R-DIP" type="revolute">
+    <parent link="F4-R-PIP" />
+    <child link="F4-R-DIP" />
+    <origin xyz="-0.0006 0.023 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.22" effort="1.5" velocity="3.59" />
+    <dynamics damping="0.0209" friction="0.0300" />
+  </joint>
+  <joint name="F5-R-MCP2" type="revolute">
+    <parent link="PALM-R" />
+    <child link="F5-R-MCP2" />
+    <origin xyz="-0.0111988 0.0632092 0.0023" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.61" upper="0.61" effort="6.0" velocity="3.59" />
+    <dynamics damping="0.0836" friction="0.1200" />
+  </joint>
+  <joint name="F5-R-MCP1" type="revolute">
+    <parent link="F5-R-MCP2" />
+    <child link="F5-R-MCP1" />
+    <origin xyz="-0.0029 0.01 -0.0056" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.52" upper="1.57" effort="5.5" velocity="6.15" />
+    <dynamics damping="0.0447" friction="0.1100" />
+  </joint>
+  <joint name="F5-R-PIP" type="revolute">
+    <parent link="F5-R-MCP1" />
+    <child link="F5-R-PIP" />
+    <origin xyz="0.009 0.043109 -0.0016488" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.92" effort="3.0" velocity="5.65" />
+    <dynamics damping="0.0265" friction="0.0600" />
+  </joint>
+  <joint name="F5-R-DIP" type="revolute">
+    <parent link="F5-R-PIP" />
+    <child link="F5-R-DIP" />
+    <origin xyz="-0.0005906 0.022994 0.0001022" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.22" effort="1.5" velocity="3.59" />
+    <dynamics damping="0.0209" friction="0.0300" />
+  </joint>
+  <joint name="openarm_right_link5_to_Hand_R_base_link" type="fixed">
+    <origin xyz="-0.005 0 -0.180" rpy="-1.5707963268 0 0" />
+    <parent link="openarm_right_link5" />
+    <child link="Hand_R_base_link" />
+  </joint>
+</robot>

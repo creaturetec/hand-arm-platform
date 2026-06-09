@@ -1,0 +1,754 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="openarm_hand_bimanual">
+  <default>
+    <joint stiffness="0" ref="0.0" />
+    <default class="robot">
+      <default class="motor_DM8009">
+        <joint frictionloss="0.2" damping="1.0" armature="0.0081" limited="true" type="hinge" />
+        <motor forcelimited="true" forcerange="-40 40" />
+      </default>
+      <default class="motor_DM4340">
+        <joint frictionloss="0.1" damping="0.9" armature="0.1600" limited="true" type="hinge" />
+        <motor forcelimited="true" forcerange="-27 27" />
+      </default>
+      <default class="motor_DM4310">
+        <joint frictionloss="0.04" damping="0.9" armature="0.0100" limited="true" type="hinge" />
+        <motor forcelimited="true" forcerange="-7 7" />
+      </default>
+      <default class="motor_DM3507">
+        <joint frictionloss="0.01" damping="0.01" armature="0.0049" limited="true" type="hinge" />
+        <motor forcelimited="true" forcerange="-7 7" />
+      </default>
+      <default class="motor_finger">
+        <joint limited="true" type="hinge" damping="2" />
+        <position forcelimited="true" forcerange="-333 333" ctrllimited="true" ctrlrange="0 0.7854" />
+      </default>
+      <default class="lifter">
+        <joint limited="true" type="slide" damping="50" />
+        <position forcelimited="true" forcerange="-3000 3000" ctrllimited="true" ctrlrange="0 0.3" />
+      </default>
+      <default class="position_DM8009">
+        <position kp="200" kv="150" forcelimited="true" forcerange="-40 40" />
+      </default>
+      <default class="position_DM4340">
+        <position kp="100" kv="30" forcelimited="true" forcerange="-27 27" />
+      </default>
+      <default class="position_DM4310">
+        <position kp="200" kv="5" forcelimited="true" forcerange="-7 7" />
+      </default>
+      <default class="position_DM3507">
+        <position kp="200" kv="5" forcelimited="true" forcerange="-7 7" />
+      </default>
+      <default class="position_lifter">
+        <position kp="8000" kv="4000" forcelimited="true" forcerange="-3000 3000" />
+      </default>
+      <default class="collision">
+        <geom material="collision_material" condim="3" conaffinity="1" priority="1" group="3" solref="0.005 1" friction="1 0.01 0.01" />
+        <equality solimp="0.99 0.999 1e-05" solref="0.005 1" />
+      </default>
+      <default class="visual">
+        <geom material="visualgeom" contype="0" conaffinity="0" group="2" />
+      </default>
+    </default>
+    <default class="wrist_joint">
+      <joint armature="0.0032" frictionloss="0.132" damping="4.20E-05" />
+    </default>
+    <default class="MCP_joint">
+      <joint armature="0.00265" frictionloss="0.07456" damping="2.38E-05" />
+    </default>
+    <default class="PIP_joint">
+      <joint armature="0.0006" frictionloss="0.01276" damping="4.06E-06" />
+    </default>
+    <default class="DIP_joint">
+      <joint armature="0.00042" frictionloss="0.00378738" damping="1.21E-06" />
+    </default>
+  </default>
+  <compiler angle="radian" meshdir="meshes" />
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0" />
+    <rgba haze="0.15 0.25 0.35 1" />
+    <global azimuth="180" elevation="0" />
+    <quality shadowsize="8192" />
+  </visual>
+  <statistic center="-0.02 0 0.48" extent="1.5" meansize="0.05" />
+  <option timestep="0.001" gravity="0 0 0" />
+  <asset>
+
+    <material name="collision_material" rgba="0.8 0.2 0.2 0.5" />
+    <material name="visualgeom" rgba="0.7 0.7 0.7 1" />
+    <material name="pale_silver" rgba="0.752941 0.752941 0.752941 1" specular="1.0" shininess="0.9" reflectance="0.8" />
+    <material name="metal_silver" rgba="0.65 0.65 0.65 1.0" specular="1.0" shininess="0.9" reflectance="0.8" />
+    <material name="matte_black" rgba="0.247 0.247 0.247 1.0" reflectance="0.05" shininess="0.5" />
+    <material name="openarm_body_link0_material" rgba="0.247 0.247 0.247 1.0" reflectance="0.05" shininess="0.5" />
+    <mesh name="base_link_left_00" content_type="model/obj" file="openarm_visual/base_link_00.obj" scale="1 -1 1" />
+    <mesh name="base_link_left_01" content_type="model/obj" file="openarm_visual/base_link_01.obj" scale="1 -1 1" />
+    <mesh name="base_link_left_collision_00" content_type="model/stl" file="openarm_collision/base_link.stl" scale="1 -1 1" />
+    <mesh name="base_link_right_00" content_type="model/obj" file="openarm_visual/base_link_00.obj" />
+    <mesh name="base_link_right_01" content_type="model/obj" file="openarm_visual/base_link_01.obj" />
+    <mesh name="base_link_right_collision_00" content_type="model/stl" file="openarm_collision/base_link.stl" />
+    <mesh name="body_link0" content_type="model/stl" file="openarm_visual/body_link0.stl" scale="0.001 0.001 0.0015" />
+    <mesh name="body_link0_symp" content_type="model/stl" file="openarm_collision/body_link0_symp.stl" scale="0.001 0.001 0.0015" />
+    <mesh name="link1_left_00" content_type="model/obj" file="openarm_visual/link1_00.obj" scale="1 -1 1" />
+    <mesh name="link1_left_01" content_type="model/obj" file="openarm_visual/link1_01.obj" scale="1 -1 1" />
+    <mesh name="link1_left_02" content_type="model/obj" file="openarm_visual/link1_02.obj" scale="1 -1 1" />
+    <mesh name="link1_left_collision_00" content_type="model/stl" file="openarm_collision/link1.stl" scale="1 -1 1" />
+    <mesh name="link1_right_00" content_type="model/obj" file="openarm_visual/link1_00.obj" />
+    <mesh name="link1_right_01" content_type="model/obj" file="openarm_visual/link1_01.obj" />
+    <mesh name="link1_right_02" content_type="model/obj" file="openarm_visual/link1_02.obj" />
+    <mesh name="link1_right_collision_00" content_type="model/stl" file="openarm_collision/link1.stl" />
+    <mesh name="link2_left_00" content_type="model/obj" file="openarm_visual/link2_00.obj" scale="1 -1 1" />
+    <mesh name="link2_left_01" content_type="model/obj" file="openarm_visual/link2_01.obj" scale="1 -1 1" />
+    <mesh name="link2_left_02" content_type="model/obj" file="openarm_visual/link2_02.obj" scale="1 -1 1" />
+    <mesh name="link2_left_collision_00" content_type="model/stl" file="openarm_collision/link2.stl" scale="1 -1 1" />
+    <mesh name="link2_right_00" content_type="model/obj" file="openarm_visual/link2_00.obj" />
+    <mesh name="link2_right_01" content_type="model/obj" file="openarm_visual/link2_01.obj" />
+    <mesh name="link2_right_02" content_type="model/obj" file="openarm_visual/link2_02.obj" />
+    <mesh name="link2_right_collision_00" content_type="model/stl" file="openarm_collision/link2.stl" />
+    <mesh name="link3_left_00" content_type="model/obj" file="openarm_visual/link3_00.obj" />
+    <mesh name="link3_left_01" content_type="model/obj" file="openarm_visual/link3_01.obj" />
+    <mesh name="link3_left_02" content_type="model/obj" file="openarm_visual/link3_02.obj" />
+    <mesh name="link3_left_collision_00" content_type="model/stl" file="openarm_collision/link3.stl" />
+    <mesh name="link3_right_00" content_type="model/obj" file="openarm_visual/link3_00.obj" />
+    <mesh name="link3_right_01" content_type="model/obj" file="openarm_visual/link3_01.obj" />
+    <mesh name="link3_right_02" content_type="model/obj" file="openarm_visual/link3_02.obj" />
+    <mesh name="link3_right_collision_00" content_type="model/stl" file="openarm_collision/link3.stl" />
+    <mesh name="link4_left_00" content_type="model/obj" file="openarm_visual/link4_00.obj" />
+    <mesh name="link4_left_01" content_type="model/obj" file="openarm_visual/link4_01.obj" />
+    <mesh name="link4_left_02" content_type="model/obj" file="openarm_visual/link4_02.obj" />
+    <mesh name="link4_left_collision_00" content_type="model/stl" file="openarm_collision/link4.stl" />
+    <mesh name="link4_right_00" content_type="model/obj" file="openarm_visual/link4_00.obj" />
+    <mesh name="link4_right_01" content_type="model/obj" file="openarm_visual/link4_01.obj" />
+    <mesh name="link4_right_02" content_type="model/obj" file="openarm_visual/link4_02.obj" />
+    <mesh name="link4_right_collision_00" content_type="model/stl" file="openarm_collision/link4.stl" />
+    <mesh name="HOUSING-L_visual" file="hand_left_visual/HOUSING-L.STL" />
+    <mesh name="HOUSING-L_collision" file="hand_left_collision/HOUSING-L_collision.STL" />
+    <mesh name="WRIST-PALM-L_visual" file="hand_left_visual/WRIST-PALM-L.STL" />
+    <mesh name="WRIST-PALM-L_collision" file="hand_left_collision/WRIST-PALM-L_collision.STL" />
+    <mesh name="PALM-L_visual" file="hand_left_visual/PALM-L.STL" />
+    <mesh name="PALM-L_collision" file="hand_left_collision/PALM-L_collision.STL" />
+    <mesh name="F1-L-MCP2_visual" file="hand_left_visual/F1-L-MCP2.STL" />
+    <mesh name="F1-L-MCP2_collision" file="hand_left_collision/F1-L-MCP2_collision.STL" />
+    <mesh name="F1-L-MCP1_visual" file="hand_left_visual/F1-L-MCP1.STL" />
+    <mesh name="F1-L-MCP1_collision" file="hand_left_collision/F1-L-MCP1_collision.STL" />
+    <mesh name="F1-L-PIP_visual" file="hand_left_visual/F1-L-PIP.STL" />
+    <mesh name="F1-L-PIP_collision" file="hand_left_collision/F1-L-PIP_collision.STL" />
+    <mesh name="F1-L-DIP_visual" file="hand_left_visual/F1-L-DIP.STL" />
+    <mesh name="F1-L-DIP_collision" file="hand_left_collision/F1-L-DIP_collision.STL" />
+    <mesh name="F2-L-MCP2_visual" file="hand_left_visual/F2-L-MCP2.STL" />
+    <mesh name="F2-L-MCP2_collision" file="hand_left_collision/F2-L-MCP2_collision.STL" />
+    <mesh name="F2-L-MCP1_visual" file="hand_left_visual/F2-L-MCP1.STL" />
+    <mesh name="F2-L-MCP1_collision" file="hand_left_collision/F2-L-MCP1_collision.STL" />
+    <mesh name="F2-L-PIP_visual" file="hand_left_visual/F2-L-PIP.STL" />
+    <mesh name="F2-L-PIP_collision" file="hand_left_collision/F2-L-PIP_collision.STL" />
+    <mesh name="F2-L-DIP_visual" file="hand_left_visual/F2-L-DIP.STL" />
+    <mesh name="F2-L-DIP_collision" file="hand_left_collision/F2-L-DIP_collision.STL" />
+    <mesh name="F3-L-MCP2_visual" file="hand_left_visual/F3-L-MCP2.STL" />
+    <mesh name="F3-L-MCP2_collision" file="hand_left_collision/F3-L-MCP2_collision.STL" />
+    <mesh name="F3-L-MCP1_visual" file="hand_left_visual/F3-L-MCP1.STL" />
+    <mesh name="F3-L-MCP1_collision" file="hand_left_collision/F3-L-MCP1_collision.STL" />
+    <mesh name="F3-L-PIP_visual" file="hand_left_visual/F3-L-PIP.STL" />
+    <mesh name="F3-L-PIP_collision" file="hand_left_collision/F3-L-PIP_collision.STL" />
+    <mesh name="F3-L-DIP_visual" file="hand_left_visual/F3-L-DIP.STL" />
+    <mesh name="F3-L-DIP_collision" file="hand_left_collision/F3-L-DIP_collision.STL" />
+    <mesh name="F4-L-MCP2_visual" file="hand_left_visual/F4-L-MCP2.STL" />
+    <mesh name="F4-L-MCP2_collision" file="hand_left_collision/F4-L-MCP2_collision.STL" />
+    <mesh name="F4-L-MCP1_visual" file="hand_left_visual/F4-L-MCP1.STL" />
+    <mesh name="F4-L-MCP1_collision" file="hand_left_collision/F4-L-MCP1_collision.STL" />
+    <mesh name="F4-L-PIP_visual" file="hand_left_visual/F4-L-PIP.STL" />
+    <mesh name="F4-L-PIP_collision" file="hand_left_collision/F4-L-PIP_collision.STL" />
+    <mesh name="F4-L-DIP_visual" file="hand_left_visual/F4-L-DIP.STL" />
+    <mesh name="F4-L-DIP_collision" file="hand_left_collision/F4-L-DIP_collision.STL" />
+    <mesh name="F5-L-MCP2_visual" file="hand_left_visual/F5-L-MCP2.STL" />
+    <mesh name="F5-L-MCP2_collision" file="hand_left_collision/F5-L-MCP2_collision.STL" />
+    <mesh name="F5-L-MCP1_visual" file="hand_left_visual/F5-L-MCP1.STL" />
+    <mesh name="F5-L-MCP1_collision" file="hand_left_collision/F5-L-MCP1_collision.STL" />
+    <mesh name="F5-L-PIP_visual" file="hand_left_visual/F5-L-PIP.STL" />
+    <mesh name="F5-L-PIP_collision" file="hand_left_collision/F5-L-PIP_collision.STL" />
+    <mesh name="F5-L-DIP_visual" file="hand_left_visual/F5-L-DIP.STL" />
+    <mesh name="F5-L-DIP_collision" file="hand_left_collision/F5-L-DIP_collision.STL" />
+    <mesh name="HOUSING-R_visual" file="hand_right_visual/HOUSING-R.STL" />
+    <mesh name="HOUSING-R_collision" file="hand_right_collision/HOUSING-R_collision.STL" />
+    <mesh name="WRIST-PALM-R_visual" file="hand_right_visual/WRIST-PALM-R.STL" />
+    <mesh name="WRIST-PALM-R_collision" file="hand_right_collision/WRIST-PALM-R_collision.STL" />
+    <mesh name="PALM-R_visual" file="hand_right_visual/PALM-R.STL" />
+    <mesh name="PALM-R_collision" file="hand_right_collision/PALM-R_collision.STL" />
+    <mesh name="F1-R-MCP2_visual" file="hand_right_visual/F1-R-MCP2.STL" />
+    <mesh name="F1-R-MCP2_collision" file="hand_right_collision/F1-R-MCP2_collision.STL" />
+    <mesh name="F1-R-MCP1_visual" file="hand_right_visual/F1-R-MCP1.STL" />
+    <mesh name="F1-R-MCP1_collision" file="hand_right_collision/F1-R-MCP1_collision.STL" />
+    <mesh name="F1-R-PIP_visual" file="hand_right_visual/F1-R-PIP.STL" />
+    <mesh name="F1-R-PIP_collision" file="hand_right_collision/F1-R-PIP_collision.STL" />
+    <mesh name="F1-R-DIP_visual" file="hand_right_visual/F1-R-DIP.STL" />
+    <mesh name="F1-R-DIP_collision" file="hand_right_collision/F1-R-DIP_collision.STL" />
+    <mesh name="F2-R-MCP2_visual" file="hand_right_visual/F2-R-MCP2.STL" />
+    <mesh name="F2-R-MCP2_collision" file="hand_right_collision/F2-R-MCP2_collision.STL" />
+    <mesh name="F2-R-MCP1_visual" file="hand_right_visual/F2-R-MCP1.STL" />
+    <mesh name="F2-R-MCP1_collision" file="hand_right_collision/F2-R-MCP1_collision.STL" />
+    <mesh name="F2-R-PIP_visual" file="hand_right_visual/F2-R-PIP.STL" />
+    <mesh name="F2-R-PIP_collision" file="hand_right_collision/F2-R-PIP_collision.STL" />
+    <mesh name="F2-R-DIP_visual" file="hand_right_visual/F2-R-DIP.STL" />
+    <mesh name="F2-R-DIP_collision" file="hand_right_collision/F2-R-DIP_collision.STL" />
+    <mesh name="F3-R-MCP2_visual" file="hand_right_visual/F3-R-MCP2.STL" />
+    <mesh name="F3-R-MCP2_collision" file="hand_right_collision/F3-R-MCP2_collision.STL" />
+    <mesh name="F3-R-MCP1_visual" file="hand_right_visual/F3-R-MCP1.STL" />
+    <mesh name="F3-R-MCP1_collision" file="hand_right_collision/F3-R-MCP1_collision.STL" />
+    <mesh name="F3-R-PIP_visual" file="hand_right_visual/F3-R-PIP.STL" />
+    <mesh name="F3-R-PIP_collision" file="hand_right_collision/F3-R-PIP_collision.STL" />
+    <mesh name="F3-R-DIP_visual" file="hand_right_visual/F3-R-DIP.STL" />
+    <mesh name="F3-R-DIP_collision" file="hand_right_collision/F3-R-DIP_collision.STL" />
+    <mesh name="F4-R-MCP2_visual" file="hand_right_visual/F4-R-MCP2.STL" />
+    <mesh name="F4-R-MCP2_collision" file="hand_right_collision/F4-R-MCP2_collision.STL" />
+    <mesh name="F4-R-MCP1_visual" file="hand_right_visual/F4-R-MCP1.STL" />
+    <mesh name="F4-R-MCP1_collision" file="hand_right_collision/F4-R-MCP1_collision.STL" />
+    <mesh name="F4-R-PIP_visual" file="hand_right_visual/F4-R-PIP.STL" />
+    <mesh name="F4-R-PIP_collision" file="hand_right_collision/F4-R-PIP_collision.STL" />
+    <mesh name="F4-R-DIP_visual" file="hand_right_visual/F4-R-DIP.STL" />
+    <mesh name="F4-R-DIP_collision" file="hand_right_collision/F4-R-DIP_collision.STL" />
+    <mesh name="F5-R-MCP2_visual" file="hand_right_visual/F5-R-MCP2.STL" />
+    <mesh name="F5-R-MCP2_collision" file="hand_right_collision/F5-R-MCP2_collision.STL" />
+    <mesh name="F5-R-MCP1_visual" file="hand_right_visual/F5-R-MCP1.STL" />
+    <mesh name="F5-R-MCP1_collision" file="hand_right_collision/F5-R-MCP1_collision.STL" />
+    <mesh name="F5-R-PIP_visual" file="hand_right_visual/F5-R-PIP.STL" />
+    <mesh name="F5-R-PIP_collision" file="hand_right_collision/F5-R-PIP_collision.STL" />
+    <mesh name="F5-R-DIP_visual" file="hand_right_visual/F5-R-DIP.STL" />
+    <mesh name="F5-R-DIP_collision" file="hand_right_collision/F5-R-DIP_collision.STL" />
+  </asset>
+  <worldbody>
+    <body name="openarm_body_link0" pos="0.0 0.0 0.0">
+      <inertial mass="20.84" fullinertia="4.133 4.133 0.077 0.0 0.0 0.0" pos="0 0 0" />
+      <geom name="openarm_body_link0_visual" type="mesh" mesh="body_link0" class="visual" material="openarm_body_link0_material" />
+      <geom name="openarm_body_link0_collision" type="mesh" mesh="body_link0_symp" class="collision" />
+      <body name="openarm_left_base_link" pos="0.0 0.031 1.047">
+        <inertial mass="0.487784887988258" fullinertia="0.000484733990709424 0.000682400572197824 0.000320236101430026 -1.62770678780767e-07 4.65761719998324e-09 -1.17426513474366e-08" pos="0.00253123748061566 0.0258185540330169 2.70658291858903e-05" />
+        <geom name="base_link_left_00" type="mesh" mesh="base_link_left_00" class="visual" material="matte_black" quat="0 0 1 0" />
+        <geom name="base_link_left_01" type="mesh" mesh="base_link_left_01" class="visual" material="pale_silver" quat="0 0 1 0" />
+        <geom name="base_link_left_collision_00" type="mesh" mesh="base_link_left_collision_00" class="collision" quat="0 0 1 0" />
+        <body name="openarm_left_link1" pos="0 0.0625 0">
+          <inertial mass="0.561428544234246" fullinertia="0.000538144986433873 0.000373345162254971 0.000329804343882795 -4.63056685765756e-06 2.22975551768159e-08 -3.27884751984609e-08" pos="0.000900350355624244 0.0444659716892874 2.88441021165683e-05" />
+          <joint name="openarm_left_joint1" pos="0 0 0" axis="0 1 0" range="-3.4907 1.3963" actuatorfrcrange="-40 40" class="motor_DM8009" />
+          <geom name="link1_left_00" type="mesh" mesh="link1_left_00" class="visual" material="matte_black" />
+          <geom name="link1_left_01" type="mesh" mesh="link1_left_01" class="visual" material="pale_silver" />
+          <geom name="link1_left_02" type="mesh" mesh="link1_left_02" class="visual" material="metal_silver" />
+          <geom name="link1_left_collision_00" type="mesh" mesh="link1_left_collision_00" class="collision" />
+          <body name="openarm_left_link2" pos="0 0.0600000000000001 0">
+            <inertial mass="0.295592749115978" fullinertia="0.000163597219145931 0.000120429707158439 8.76628866864578e-05 3.13608197607031e-10 5.55009912371659e-06 -4.00306455289745e-10" pos="-0.0247184924346635 -7.60578399428002e-08 -0.0312643102292087" />
+            <joint name="openarm_left_joint2" pos="0 0 0" axis="-1 0 0" range="-3.3161 0.17453" actuatorfrcrange="-40 40" class="motor_DM8009" />
+            <geom name="link2_left_00" type="mesh" mesh="link2_left_00" class="visual" material="matte_black" />
+            <geom name="link2_left_01" type="mesh" mesh="link2_left_01" class="visual" material="metal_silver" />
+            <geom name="link2_left_02" type="mesh" mesh="link2_left_02" class="visual" material="pale_silver" />
+            <geom name="link2_left_collision_00" type="mesh" mesh="link2_left_collision_00" class="collision" />
+            <body name="openarm_left_link3" pos="0 0 -0.0662500000000008">
+              <inertial mass="0.850916861288263" fullinertia="0.0010217027340552 0.000903473277290975 0.000443551676668759 -1.82210543854634e-07 -5.35782873075177e-05 -8.4199828452717e-06" pos="-0.00300861804638783 -0.000514813312550808 -0.109368241429434" />
+              <joint name="openarm_left_joint3" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708" actuatorfrcrange="-27 27" class="motor_DM4340" />
+              <geom name="link3_left_00" type="mesh" mesh="link3_left_00" class="visual" material="matte_black" />
+              <geom name="link3_left_01" type="mesh" mesh="link3_left_01" class="visual" material="metal_silver" />
+              <geom name="link3_left_02" type="mesh" mesh="link3_left_02" class="visual" material="pale_silver" />
+              <geom name="link3_left_collision_00" type="mesh" mesh="link3_left_collision_00" class="collision" />
+              <body name="openarm_left_link4" pos="0 0 -0.15375">
+                <inertial mass="0.590845933035621" fullinertia="0.000436492657493736 0.00040384685548561 0.000228213573513934 5.2455675270269e-06 -1.65547634348731e-06 3.18067426068364e-06" pos="-0.00310326243752606 -0.00136538979048502 -0.0574601379354351" />
+                <joint name="openarm_left_joint4" pos="0 0 0" axis="0 -1 0" range="0 2.4435" actuatorfrcrange="-27 27" class="motor_DM4340" />
+                <geom name="link4_left_00" type="mesh" mesh="link4_left_00" class="visual" material="matte_black" />
+                <geom name="link4_left_01" type="mesh" mesh="link4_left_01" class="visual" material="pale_silver" />
+                <geom name="link4_left_02" type="mesh" mesh="link4_left_02" class="visual" material="metal_silver" />
+                <geom name="link4_left_collision_00" type="mesh" mesh="link4_left_collision_00" class="collision" />
+                <body name="openarm_left_link5" pos="0 0 -0.0955000000000005">
+                  <inertial mass="0.5803968030561" fullinertia="0.000263636157719515 0.000315435352726595 0.00016654408109665 -3.12744502166655e-06 7.24104361181618e-07 1.41346881493762e-07" pos="-0.000737188580130584 0.000412406544351845 -0.047093829077211" />
+                  <joint name="openarm_left_joint5" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708" actuatorfrcrange="-7 7" class="motor_DM4310" />
+                  <body name="Hand_L_base_link" pos="0 0 -0.180" quat="0 0 -0.707106781188 0.707106781185">
+                    <body name="HOUSING-L">
+                      <inertial pos="-1.11e-05 -0.085871 -0.0003395" mass="0.5561357" fullinertia="0.0010606 0.0004326 0.0012833 0.0000006 0 -0.0000165" />
+                      <geom name="HOUSING-L_visual" type="mesh" mesh="HOUSING-L_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                      <geom name="HOUSING-L_collision" type="mesh" mesh="HOUSING-L_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                      <body name="WRIST-PALM-L">
+                        <inertial pos="1e-07 0.0098109 -0.0002551" mass="0.0356302" fullinertia="0.0000063 0.0000075 0.0000061 0 0 0" />
+                        <joint name="WRIST-PALM-L" pos="0 0 0" axis="0 0 1" range="-0.785 0.785" class="wrist_joint" />
+                        <geom name="WRIST-PALM-L_visual" type="mesh" mesh="WRIST-PALM-L_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                        <geom name="WRIST-PALM-L_collision" type="mesh" mesh="WRIST-PALM-L_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                        <body name="PALM-L" pos="0.016904 0.03005 -0.0003425" quat="1.349243573e-11 -3.673205103e-06 1 -3.673205103e-06">
+                          <inertial pos="0.0122781 0.038595 0.0020082" mass="0.1364434" fullinertia="0.0000619 0.0000437 0.0000993 -0.0000115 -0.0000014 -0.0000038" />
+                          <joint name="PALM-L" pos="0 0 0" axis="-1 0 0" range="-1.22 1.22" class="wrist_joint" />
+                          <geom name="PALM-L_visual" type="mesh" mesh="PALM-L_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                          <geom name="PALM-L_collision" type="mesh" mesh="PALM-L_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                          <body name="F1-L-MCP2" pos="0.039199 0.019548 -0.0035" quat="1.349243573e-11 -3.673205103e-06 1 -3.673205103e-06">
+                            <inertial pos="-0.0051493 0.0066497 0.003465" mass="0.0034154" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0" />
+                            <joint name="F1-L-MCP2" pos="0 0 0" axis="0.76604 0.64279 0" range="-0.35 0.61" class="MCP_joint" />
+                            <geom name="F1-L-MCP2_visual" type="mesh" mesh="F1-L-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                            <geom name="F1-L-MCP2_collision" type="mesh" mesh="F1-L-MCP2_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                            <body name="F1-L-MCP1" pos="-0.0049195 0.0066407 0.010162" quat="0.6031565987 0.1170050762 0.783841507 0.09002456069">
+                              <inertial pos="0.0062613 0.0157265 -0.0117765" mass="0.0229565" fullinertia="0.0000024 0.000002 0.0000021 0 0 0.0000008" />
+                              <joint name="F1-L-MCP1" pos="0 0 0" axis="1 0 0" range="-0.52 0.785" class="MCP_joint" />
+                              <geom name="F1-L-MCP1_visual" type="mesh" mesh="F1-L-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                              <geom name="F1-L-MCP1_collision" type="mesh" mesh="F1-L-MCP1_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                              <body name="F1-L-PIP" pos="0.00205 0.030797 -0.027817">
+                                <inertial pos="0.0041998 0.0108245 -0.0102906" mass="0.010446" fullinertia="0.0000007 0.0000006 0.0000007 0 0 0.0000002" />
+                                <joint name="F1-L-PIP" pos="0 0 0" axis="1 0 0" range="-0.35 1.31" class="PIP_joint" />
+                                <geom name="F1-L-PIP_visual" type="mesh" mesh="F1-L-PIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                <geom name="F1-L-PIP_collision" type="mesh" mesh="F1-L-PIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                <body name="F1-L-DIP" pos="0 0.022214 -0.020162">
+                                  <inertial pos="0.0041998 0.0088881 -0.0097563" mass="0.0076488" fullinertia="0.0000004 0.0000004 0.0000004 0 0 0.0000001" />
+                                  <joint name="F1-L-DIP" pos="0 0 0" axis="1 0 0" range="-0.35 1.31" class="DIP_joint" />
+                                  <geom name="F1-L-DIP_visual" type="mesh" mesh="F1-L-DIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                  <geom name="F1-L-DIP_collision" type="mesh" mesh="F1-L-DIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="F2-L-MCP2" pos="0.04512 0.078019 0.00395" quat="1.349243573e-11 -3.673205103e-06 1 -3.673205103e-06">
+                            <inertial pos="0 0.0032303 0.0002549" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0" />
+                            <joint name="F2-L-MCP2" pos="0 0 0" axis="0 0 1" range="-0.61 0.61" class="MCP_joint" />
+                            <geom name="F2-L-MCP2_visual" type="mesh" mesh="F2-L-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                            <geom name="F2-L-MCP2_collision" type="mesh" mesh="F2-L-MCP2_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                            <body name="F2-L-MCP1" pos="0 0.01 0.00075" quat="1.349243573e-11 -3.673205103e-06 1 -3.673205103e-06">
+                              <inertial pos="9e-07 0.0177238 0.0007805" mass="0.0145312" fullinertia="0.0000022 0.0000005 0.0000024 0 0 -0.0000001" />
+                              <joint name="F2-L-MCP1" pos="0 0 0" axis="-1 0 0" range="-0.52 1.57" class="MCP_joint" />
+                              <geom name="F2-L-MCP1_visual" type="mesh" mesh="F2-L-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                              <geom name="F2-L-MCP1_collision" type="mesh" mesh="F2-L-MCP1_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                              <body name="F2-L-PIP" pos="0 0.043109 0.0016488" quat="1.349243573e-11 -3.673205103e-06 1 -3.673205103e-06">
+                                <inertial pos="-6e-07 0.0111296 -0.000548" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0" />
+                                <joint name="F2-L-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint" />
+                                <geom name="F2-L-PIP_visual" type="mesh" mesh="F2-L-PIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                <geom name="F2-L-PIP_collision" type="mesh" mesh="F2-L-PIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                <body name="F2-L-DIP" pos="0 0.023 0">
+                                  <inertial pos="-9e-07 0.0103728 -0.0010699" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0" />
+                                  <joint name="F2-L-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint" />
+                                  <geom name="F2-L-DIP_visual" type="mesh" mesh="F2-L-DIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                  <geom name="F2-L-DIP_collision" type="mesh" mesh="F2-L-DIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="F3-L-MCP2" pos="0.025553 0.083234 0.00395" quat="1.349243573e-11 -3.673205103e-06 1 -3.673205103e-06">
+                            <inertial pos="-8e-07 0.0032575 0.0002549" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0" />
+                            <joint name="F3-L-MCP2" pos="0 0 0" axis="0 0 1" range="-0.61 0.61" class="MCP_joint" />
+                            <geom name="F3-L-MCP2_visual" type="mesh" mesh="F3-L-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                            <geom name="F3-L-MCP2_collision" type="mesh" mesh="F3-L-MCP2_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                            <body name="F3-L-MCP1" pos="0 0.01 0.00075" quat="-8.99607986e-12 0.0003876767852 0.9999999249 -2.320510159e-08">
+                              <inertial pos="2.32e-05 0.017751 0.0007805" mass="0.0145312" fullinertia="0.0000022 0.0000005 0.0000024 0 0 -0.0000001" />
+                              <joint name="F3-L-MCP1" pos="0 0 0" axis="-1 0 0" range="-0.52 1.57" class="MCP_joint" />
+                              <geom name="F3-L-MCP1_visual" type="mesh" mesh="F3-L-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                              <geom name="F3-L-MCP1_collision" type="mesh" mesh="F3-L-MCP1_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                              <body name="F3-L-PIP" pos="0 0.043109 0.0016488" quat="1.349243573e-11 -3.673205103e-06 -1 3.673205103e-06">
+                                <inertial pos="-5.12e-05 0.0111568 -0.000548" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0" />
+                                <joint name="F3-L-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint" />
+                                <geom name="F3-L-PIP_visual" type="mesh" mesh="F3-L-PIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                <geom name="F3-L-PIP_collision" type="mesh" mesh="F3-L-PIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                <body name="F3-L-DIP" pos="0 0.023 0">
+                                  <inertial pos="-6.88e-05 0.0104 -0.001145" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0" />
+                                  <joint name="F3-L-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint" />
+                                  <geom name="F3-L-DIP_visual" type="mesh" mesh="F3-L-DIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                  <geom name="F3-L-DIP_collision" type="mesh" mesh="F3-L-DIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="F4-L-MCP2" pos="0.0059875 0.078019 0.00395" quat="1.349243573e-11 -3.673205103e-06 1 -3.673205103e-06">
+                            <inertial pos="0 0.0032303 0.0002549" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0" />
+                            <joint name="F4-L-MCP2" pos="0 0 0" axis="0 0 1" range="-0.61 0.61" class="MCP_joint" />
+                            <geom name="F4-L-MCP2_visual" type="mesh" mesh="F4-L-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                            <geom name="F4-L-MCP2_collision" type="mesh" mesh="F4-L-MCP2_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                            <body name="F4-L-MCP1" pos="0 0.01 0.00075" quat="0 -2.320510333e-08 1 -2.320510333e-08">
+                              <inertial pos="9e-07 0.0177238 0.0007805" mass="0.0145312" fullinertia="0.0000022 0.0000005 0.0000024 0 0 -0.0000001" />
+                              <joint name="F4-L-MCP1" pos="0 0 0" axis="-1 0 0" range="-0.52 1.57" class="MCP_joint" />
+                              <geom name="F4-L-MCP1_visual" type="mesh" mesh="F4-L-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                              <geom name="F4-L-MCP1_collision" type="mesh" mesh="F4-L-MCP1_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                              <body name="F4-L-PIP" pos="0 0.043109 0.0016488" quat="1.349243573e-11 -3.673205103e-06 1 -3.673205103e-06">
+                                <inertial pos="-6e-07 0.0111296 -0.000548" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0" />
+                                <joint name="F4-L-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint" />
+                                <geom name="F4-L-PIP_visual" type="mesh" mesh="F4-L-PIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                <geom name="F4-L-PIP_collision" type="mesh" mesh="F4-L-PIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                <body name="F4-L-DIP" pos="-5.52e-05 0.022862 1.29e-05">
+                                  <inertial pos="5.43e-05 0.0105111 -0.0011579" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0" />
+                                  <joint name="F4-L-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint" />
+                                  <geom name="F4-L-DIP_visual" type="mesh" mesh="F4-L-DIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                  <geom name="F4-L-DIP_collision" type="mesh" mesh="F4-L-DIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="F5-L-MCP2" pos="-0.01361 0.063366 0.00395" quat="1.349243573e-11 -3.673205103e-06 1 -3.673205103e-06">
+                            <inertial pos="0 0.0032303 0.0002549" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0" />
+                            <joint name="F5-L-MCP2" pos="0 0 0" axis="0 0 1" range="-0.61 0.61" class="MCP_joint" />
+                            <geom name="F5-L-MCP2_visual" type="mesh" mesh="F5-L-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                            <geom name="F5-L-MCP2_collision" type="mesh" mesh="F5-L-MCP2_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                            <body name="F5-L-MCP1" pos="0 0.01 0.00075" quat="0 -2.320510333e-08 1 -2.320510333e-08">
+                              <inertial pos="9e-07 0.0177238 0.0007805" mass="0.0145312" fullinertia="0.0000022 0.0000005 0.0000024 0 0 -0.0000001" />
+                              <joint name="F5-L-MCP1" pos="0 0 0" axis="-1 0 0" range="-0.52 1.57" class="MCP_joint" />
+                              <geom name="F5-L-MCP1_visual" type="mesh" mesh="F5-L-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                              <geom name="F5-L-MCP1_collision" type="mesh" mesh="F5-L-MCP1_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                              <body name="F5-L-PIP" pos="0 0.043109 0.0016488" quat="1.349243573e-11 -3.673205103e-06 1 -3.673205103e-06">
+                                <inertial pos="-6e-07 0.0111296 -0.000548" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0" />
+                                <joint name="F5-L-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint" />
+                                <geom name="F5-L-PIP_visual" type="mesh" mesh="F5-L-PIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                <geom name="F5-L-PIP_collision" type="mesh" mesh="F5-L-PIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                <body name="F5-L-DIP" pos="0 0.022994 0">
+                                  <inertial pos="1.4e-06 0.0103743 -0.0010705" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0" />
+                                  <joint name="F5-L-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint" />
+                                  <geom name="F5-L-DIP_visual" type="mesh" mesh="F5-L-DIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                  <geom name="F5-L-DIP_collision" type="mesh" mesh="F5-L-DIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="openarm_right_base_link" pos="0.0 -0.031 1.047">
+        <inertial mass="0.487784887988258" fullinertia="0.000484733990709424 0.000682400572197824 0.000320236101430026 1.62770678780767e-07 4.65761719998324e-09 1.17426513474366e-08" pos="0.00253123748061566 -0.0258185540330169 2.70658291858903e-05" />
+        <geom name="base_link_right_00" type="mesh" mesh="base_link_right_00" class="visual" material="matte_black" quat="0 0 1 0" />
+        <geom name="base_link_right_01" type="mesh" mesh="base_link_right_01" class="visual" material="pale_silver" quat="0 0 1 0" />
+        <geom name="base_link_right_collision_00" type="mesh" mesh="base_link_right_collision_00" class="collision" quat="0 0 1 0" />
+        <body name="openarm_right_link1" pos="0 -0.0625 0">
+          <inertial mass="0.561428544234246" fullinertia="0.000538144986433873 0.000373345162254971 0.000329804343882795 4.63056685765756e-06 2.22975551768159e-08 3.27884751984609e-08" pos="0.000900350355624244 -0.0444659716892874 2.88441021165683e-05" />
+          <joint name="openarm_right_joint1" pos="0 0 0" axis="0 -1 0" range="-1.3963 3.4907" actuatorfrcrange="-40 40" class="motor_DM8009" />
+          <geom name="link1_right_00" type="mesh" mesh="link1_right_00" class="visual" material="matte_black" />
+          <geom name="link1_right_01" type="mesh" mesh="link1_right_01" class="visual" material="pale_silver" />
+          <geom name="link1_right_02" type="mesh" mesh="link1_right_02" class="visual" material="metal_silver" />
+          <geom name="link1_right_collision_00" type="mesh" mesh="link1_right_collision_00" class="collision" />
+          <body name="openarm_right_link2" pos="0 -0.0600000000000001 0">
+            <inertial mass="0.295592749115978" fullinertia="0.000163597219145931 0.000120429707158439 8.76628866864578e-05 -3.13608197607031e-10 5.55009912371659e-06 4.00306455289745e-10" pos="-0.0247184924346635 7.60578399428002e-08 -0.0312643102292087" />
+            <joint name="openarm_right_joint2" pos="0 0 0" axis="-1 0 0" range="-0.17453 3.3161" actuatorfrcrange="-40 40" class="motor_DM8009" />
+            <geom name="link2_right_00" type="mesh" mesh="link2_right_00" class="visual" material="matte_black" />
+            <geom name="link2_right_01" type="mesh" mesh="link2_right_01" class="visual" material="metal_silver" />
+            <geom name="link2_right_02" type="mesh" mesh="link2_right_02" class="visual" material="pale_silver" />
+            <geom name="link2_right_collision_00" type="mesh" mesh="link2_right_collision_00" class="collision" />
+            <body name="openarm_right_link3" pos="0 0 -0.0662500000000008">
+              <inertial mass="0.850916861288263" fullinertia="0.0010217027340552 0.000903473277290975 0.000443551676668759 -1.82210543854634e-07 -5.35782873075177e-05 -8.4199828452717e-06" pos="-0.00300861804638783 -0.000514813312550808 -0.109368241429434" />
+              <joint name="openarm_right_joint3" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708" actuatorfrcrange="-27 27" class="motor_DM4340" />
+              <geom name="link3_right_00" type="mesh" mesh="link3_right_00" class="visual" material="matte_black" />
+              <geom name="link3_right_01" type="mesh" mesh="link3_right_01" class="visual" material="metal_silver" />
+              <geom name="link3_right_02" type="mesh" mesh="link3_right_02" class="visual" material="pale_silver" />
+              <geom name="link3_right_collision_00" type="mesh" mesh="link3_right_collision_00" class="collision" />
+              <body name="openarm_right_link4" pos="0 0 -0.15375">
+                <inertial mass="0.590845933035621" fullinertia="0.000436492657493736 0.00040384685548561 0.000228213573513934 5.2455675270269e-06 -1.65547634348731e-06 3.18067426068364e-06" pos="-0.00310326243752606 -0.00136538979048502 -0.0574601379354351" />
+                <joint name="openarm_right_joint4" pos="0 0 0" axis="0 -1 0" range="0 2.4435" actuatorfrcrange="-27 27" class="motor_DM4340" />
+                <geom name="link4_right_00" type="mesh" mesh="link4_right_00" class="visual" material="matte_black" />
+                <geom name="link4_right_01" type="mesh" mesh="link4_right_01" class="visual" material="pale_silver" />
+                <geom name="link4_right_02" type="mesh" mesh="link4_right_02" class="visual" material="metal_silver" />
+                <geom name="link4_right_collision_00" type="mesh" mesh="link4_right_collision_00" class="collision" />
+                <body name="openarm_right_link5" pos="0 0 -0.0955000000000005">
+                  <inertial mass="0.5803968030561" fullinertia="0.000263636157719515 0.000315435352726595 0.00016654408109665 3.12744502166655e-06 7.24104361181618e-07 -1.41346881493762e-07" pos="-0.000737188580130584 -0.000412406544351845 -0.047093829077211" />
+                  <joint name="openarm_right_joint5" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708" actuatorfrcrange="-7 7" class="motor_DM4310" />
+                  <body name="Hand_R_base_link" pos="-0.005 0 -0.180" quat="0.707106781185 -0.707106781188 0 0">
+                    <body name="HOUSING-R" pos="-0.18 0 0">
+                      <inertial pos="0.1837865 -0.0862771 -0.0016055" mass="0.5561357" fullinertia="0.0010606 0.0004326 0.0012833 0.0000006 0 -0.0000165" />
+                      <geom name="HOUSING-R_visual" type="mesh" mesh="HOUSING-R_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                      <geom name="HOUSING-R_collision" type="mesh" mesh="HOUSING-R_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                      <body name="WRIST-PALM-R" pos="0.1838 -0.00041 -0.00127">
+                        <inertial pos="-2.6e-06 0.0098149 -0.0002516" mass="0.0356289" fullinertia="0.0000063 0.0000075 0.0000061 0 0 0" />
+                        <joint name="WRIST-PALM-R" pos="0 0 0" axis="0 0 -1" range="-0.785 0.785" class="wrist_joint" />
+                        <geom name="WRIST-PALM-R_visual" type="mesh" mesh="WRIST-PALM-R_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                        <geom name="WRIST-PALM-R_collision" type="mesh" mesh="WRIST-PALM-R_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                        <body name="PALM-R" pos="-0.019318 0.030212 -0.0003385">
+                          <inertial pos="0.0146895 0.0384383 -0.0020085" mass="0.1364399" fullinertia="0.0000619 0.0000437 0.0000993 -0.0000115 0.0000014 0.0000038" />
+                          <joint name="PALM-R" pos="0 0 0" axis="1 0 0" range="-1.22 1.22" class="wrist_joint" />
+                          <geom name="PALM-R_visual" type="mesh" mesh="PALM-R_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                          <geom name="PALM-R_collision" type="mesh" mesh="PALM-R_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                          <body name="F1-R-MCP2" pos="0.0416107 0.0193912 0.0035">
+                            <inertial pos="0.0051493 0.0066497 0.003465" mass="0.0034154" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0" />
+                            <joint name="F1-R-MCP2" pos="0 0 0" axis="0.7660444 -0.6427876 0" range="-0.35 0.61" class="MCP_joint" />
+                            <geom name="F1-R-MCP2_visual" type="mesh" mesh="F1-R-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                            <geom name="F1-R-MCP2_collision" type="mesh" mesh="F1-R-MCP2_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                            <body name="F1-R-MCP1" pos="0.0050544 0.0068014 0.0101617">
+                              <inertial pos="0.0117416 0.0168702 0.0016672" mass="0.022955" fullinertia="0.0000022 0.0000021 0.0000023 -0.0000007 -0.0000003 -0.0000003" />
+                              <joint name="F1-R-MCP1" pos="0 0 0" axis="-0.2450208 -0.2920044 0.9244989" range="-0.52 0.785" class="MCP_joint" />
+                              <geom name="F1-R-MCP1_visual" type="mesh" mesh="F1-R-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                              <geom name="F1-R-MCP1_collision" type="mesh" mesh="F1-R-MCP1_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                              <body name="F1-R-PIP" pos="0.0250873 0.0300535 0.0139239">
+                                <inertial pos="0.0101665 0.011579 0.0018089" mass="0.010446" fullinertia="0.0000007 0.0000006 0.0000007 -0.0000002 -0.0000001 -0.0000001" />
+                                <joint name="F1-R-PIP" pos="0 0 0" axis="-0.2450208 -0.2920044 0.9244989" range="-0.35 1.31" class="PIP_joint" />
+                                <geom name="F1-R-PIP_visual" type="mesh" mesh="F1-R-PIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                <geom name="F1-R-PIP_collision" type="mesh" mesh="F1-R-PIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                <body name="F1-R-DIP" pos="0.0178277 0.0212462 0.0114355">
+                                  <inertial pos="0.009624 0.0095618 0.0010277" mass="0.0078009" fullinertia="0.0000004 0.0000004 0.0000004 -0.0000001 0 0" />
+                                  <joint name="F1-R-DIP" pos="0 0 0" axis="-0.2450208 -0.2920044 0.9244989" range="-0.35 1.31" class="DIP_joint" />
+                                  <geom name="F1-R-DIP_visual" type="mesh" mesh="F1-R-DIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                  <geom name="F1-R-DIP_collision" type="mesh" mesh="F1-R-DIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="F2-R-MCP2" pos="0.0475313 0.0778613 0.0023">
+                            <inertial pos="0 0.0032303 -0.0059951" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0" />
+                            <joint name="F2-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.61 0.61" class="MCP_joint" />
+                            <geom name="F2-R-MCP2_visual" type="mesh" mesh="F2-R-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                            <geom name="F2-R-MCP2_collision" type="mesh" mesh="F2-R-MCP2_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                            <body name="F2-R-MCP1" pos="0.0029 0.01 -0.0056">
+                              <inertial pos="-0.0028991 0.0177237 -0.0006809" mass="0.0145304" fullinertia="0.0000022 0.0000005 0.0000024 0 0 0.0000001" />
+                              <joint name="F2-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.52 1.57" class="MCP_joint" />
+                              <geom name="F2-R-MCP1_visual" type="mesh" mesh="F2-R-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                              <geom name="F2-R-MCP1_collision" type="mesh" mesh="F2-R-MCP1_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                              <body name="F2-R-PIP" pos="0 0.043109 -0.0016488">
+                                <inertial pos="-0.0028992 0.0111292 -0.000448" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0" />
+                                <joint name="F2-R-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint" />
+                                <geom name="F2-R-PIP_visual" type="mesh" mesh="F2-R-PIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                <geom name="F2-R-PIP_collision" type="mesh" mesh="F2-R-PIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                <body name="F2-R-DIP" pos="0.0026 0.023 0.0001">
+                                  <inertial pos="-0.0054993 0.0103728 -0.0010699" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0" />
+                                  <joint name="F2-R-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint" />
+                                  <geom name="F2-R-DIP_visual" type="mesh" mesh="F2-R-DIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                  <geom name="F2-R-DIP_collision" type="mesh" mesh="F2-R-DIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="F3-R-MCP2" pos="0.0279652 0.0831041 0.0023">
+                            <inertial pos="0 0.0032303 -0.0059951" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0" />
+                            <joint name="F3-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.61 0.61" class="MCP_joint" />
+                            <geom name="F3-R-MCP2_visual" type="mesh" mesh="F3-R-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                            <geom name="F3-R-MCP2_collision" type="mesh" mesh="F3-R-MCP2_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                            <body name="F3-R-MCP1" pos="0.0029 0.01 -0.0056">
+                              <inertial pos="-0.0028991 0.0177237 -0.0006809" mass="0.0145304" fullinertia="0.0000022 0.0000005 0.0000024 0 0 0.0000001" />
+                              <joint name="F3-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.52 1.57" class="MCP_joint" />
+                              <geom name="F3-R-MCP1_visual" type="mesh" mesh="F3-R-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                              <geom name="F3-R-MCP1_collision" type="mesh" mesh="F3-R-MCP1_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                              <body name="F3-R-PIP" pos="0.0032 0.043109 -0.0016488">
+                                <inertial pos="-0.0060992 0.0111292 -0.000448" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0" />
+                                <joint name="F3-R-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint" />
+                                <geom name="F3-R-PIP_visual" type="mesh" mesh="F3-R-PIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                <geom name="F3-R-PIP_collision" type="mesh" mesh="F3-R-PIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                <body name="F3-R-DIP" pos="-0.0006 0.023 0">
+                                  <inertial pos="-0.0054993 0.0103728 -0.001045" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0" />
+                                  <joint name="F3-R-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint" />
+                                  <geom name="F3-R-DIP_visual" type="mesh" mesh="F3-R-DIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                  <geom name="F3-R-DIP_collision" type="mesh" mesh="F3-R-DIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="F4-R-MCP2" pos="0.008399 0.0778613 0.0023">
+                            <inertial pos="0 0.0032303 -0.0059951" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0" />
+                            <joint name="F4-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.61 0.61" class="MCP_joint" />
+                            <geom name="F4-R-MCP2_visual" type="mesh" mesh="F4-R-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                            <geom name="F4-R-MCP2_collision" type="mesh" mesh="F4-R-MCP2_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                            <body name="F4-R-MCP1" pos="0.0029 0.01 -0.0056">
+                              <inertial pos="-0.0028991 0.0177237 -0.0006809" mass="0.0145304" fullinertia="0.0000022 0.0000005 0.0000024 0 0 0.0000001" />
+                              <joint name="F4-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.52 1.57" class="MCP_joint" />
+                              <geom name="F4-R-MCP1_visual" type="mesh" mesh="F4-R-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                              <geom name="F4-R-MCP1_collision" type="mesh" mesh="F4-R-MCP1_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                              <body name="F4-R-PIP" pos="0.0032 0.043109 -0.0016488">
+                                <inertial pos="-0.0060992 0.0111292 -0.000448" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0" />
+                                <joint name="F4-R-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint" />
+                                <geom name="F4-R-PIP_visual" type="mesh" mesh="F4-R-PIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                <geom name="F4-R-PIP_collision" type="mesh" mesh="F4-R-PIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                <body name="F4-R-DIP" pos="-0.0006 0.023 0">
+                                  <inertial pos="-0.0054993 0.0103728 -0.001045" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0" />
+                                  <joint name="F4-R-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint" />
+                                  <geom name="F4-R-DIP_visual" type="mesh" mesh="F4-R-DIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                  <geom name="F4-R-DIP_collision" type="mesh" mesh="F4-R-DIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                          <body name="F5-R-MCP2" pos="-0.0111988 0.0632092 0.0023">
+                            <inertial pos="0 0.0032303 -0.0059951" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0" />
+                            <joint name="F5-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.61 0.61" class="MCP_joint" />
+                            <geom name="F5-R-MCP2_visual" type="mesh" mesh="F5-R-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                            <geom name="F5-R-MCP2_collision" type="mesh" mesh="F5-R-MCP2_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                            <body name="F5-R-MCP1" pos="-0.0029 0.01 -0.0056">
+                              <inertial pos="0.0029009 0.0177237 -0.0006809" mass="0.0145304" fullinertia="0.0000022 0.0000005 0.0000024 0 0 0.0000001" />
+                              <joint name="F5-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.52 1.57" class="MCP_joint" />
+                              <geom name="F5-R-MCP1_visual" type="mesh" mesh="F5-R-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                              <geom name="F5-R-MCP1_collision" type="mesh" mesh="F5-R-MCP1_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                              <body name="F5-R-PIP" pos="0.009 0.043109 -0.0016488">
+                                <inertial pos="-0.0060992 0.0111292 -0.000448" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0" />
+                                <joint name="F5-R-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint" />
+                                <geom name="F5-R-PIP_visual" type="mesh" mesh="F5-R-PIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                <geom name="F5-R-PIP_collision" type="mesh" mesh="F5-R-PIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                <body name="F5-R-DIP" pos="-0.0005906 0.022994 0.0001022">
+                                  <inertial pos="-0.0055016 0.0103744 -0.0010705" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0" />
+                                  <joint name="F5-R-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint" />
+                                  <geom name="F5-R-DIP_visual" type="mesh" mesh="F5-R-DIP_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
+                                  <geom name="F5-R-DIP_collision" type="mesh" mesh="F5-R-DIP_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <position name="left_joint1_ctrl" joint="openarm_left_joint1" class="position_DM8009" kp="230" kv="14" ctrllimited="true" ctrlrange="-3.49066 1.39626" />
+    <position name="left_joint2_ctrl" joint="openarm_left_joint2" class="position_DM8009" kp="230" kv="12" ctrllimited="true" ctrlrange="-3.31613 0.174533" />
+    <position name="left_joint3_ctrl" joint="openarm_left_joint3" class="position_DM4340" kp="190" kv="14" ctrllimited="true" ctrlrange="-1.5708 1.5708" />
+    <position name="left_joint4_ctrl" joint="openarm_left_joint4" class="position_DM4340" kp="190" kv="14" ctrllimited="true" ctrlrange="0 2.44346" />
+    <position name="left_joint5_ctrl" joint="openarm_left_joint5" class="position_DM4310" kp="30" kv="1.5" ctrllimited="true" ctrlrange="-1.5708 1.5708" />
+    <position name="right_joint1_ctrl" joint="openarm_right_joint1" class="position_DM8009" kp="230" kv="14" ctrllimited="true" ctrlrange="-1.39626 3.49066" />
+    <position name="right_joint2_ctrl" joint="openarm_right_joint2" class="position_DM8009" kp="230" kv="12" ctrllimited="true" ctrlrange="-0.174533 3.31613" />
+    <position name="right_joint3_ctrl" joint="openarm_right_joint3" class="position_DM4340" kp="190" kv="14" ctrllimited="true" ctrlrange="-1.5708 1.5708" />
+    <position name="right_joint4_ctrl" joint="openarm_right_joint4" class="position_DM4340" kp="190" kv="14" ctrllimited="true" ctrlrange="0 2.44346" />
+    <position name="right_joint5_ctrl" joint="openarm_right_joint5" class="position_DM4310" kp="30" kv="1.5" ctrllimited="true" ctrlrange="-1.5708 1.5708" />
+    <position name="WRIST-PALM-L_ctrl" joint="WRIST-PALM-L" kp="13.2" kv="0.403969" inheritrange="1.0" />
+    <position name="PALM-L_ctrl" joint="PALM-L" kp="6.95" kv="0.284653" inheritrange="1.0" />
+    <position name="F1-L-MCP2_ctrl" joint="F1-L-MCP2" kp="6.62" kv="0.240344" inheritrange="1.0" />
+    <position name="F1-L-MCP1_ctrl" joint="F1-L-MCP1" kp="4.76" kv="0.203818" inheritrange="1.0" />
+    <position name="F1-L-PIP_ctrl" joint="F1-L-PIP" kp="0.9" kv="0.0418901" inheritrange="1.0" />
+    <position name="F1-L-DIP_ctrl" joint="F1-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
+    <position name="F2-L-MCP2_ctrl" joint="F2-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
+    <position name="F2-L-MCP1_ctrl" joint="F2-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
+    <position name="F2-L-PIP_ctrl" joint="F2-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
+    <position name="F2-L-DIP_ctrl" joint="F2-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
+    <position name="F3-L-MCP2_ctrl" joint="F3-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
+    <position name="F3-L-MCP1_ctrl" joint="F3-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
+    <position name="F3-L-PIP_ctrl" joint="F3-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
+    <position name="F3-L-DIP_ctrl" joint="F3-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
+    <position name="F4-L-MCP2_ctrl" joint="F4-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
+    <position name="F4-L-MCP1_ctrl" joint="F4-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
+    <position name="F4-L-PIP_ctrl" joint="F4-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
+    <position name="F4-L-DIP_ctrl" joint="F4-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
+    <position name="F5-L-MCP2_ctrl" joint="F5-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
+    <position name="F5-L-MCP1_ctrl" joint="F5-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
+    <position name="F5-L-PIP_ctrl" joint="F5-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
+    <position name="F5-L-DIP_ctrl" joint="F5-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
+    <position name="WRIST-PALM-R_ctrl" joint="WRIST-PALM-R" kp="13.2" kv="0.403969" inheritrange="1.0" />
+    <position name="PALM-R_ctrl" joint="PALM-R" kp="6.95" kv="0.284653" inheritrange="1.0" />
+    <position name="F1-R-MCP2_ctrl" joint="F1-R-MCP2" kp="6.62" kv="0.240344" inheritrange="1.0" />
+    <position name="F1-R-MCP1_ctrl" joint="F1-R-MCP1" kp="4.76" kv="0.203818" inheritrange="1.0" />
+    <position name="F1-R-PIP_ctrl" joint="F1-R-PIP" kp="0.9" kv="0.0418901" inheritrange="1.0" />
+    <position name="F1-R-DIP_ctrl" joint="F1-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
+    <position name="F2-R-MCP2_ctrl" joint="F2-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
+    <position name="F2-R-MCP1_ctrl" joint="F2-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
+    <position name="F2-R-PIP_ctrl" joint="F2-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
+    <position name="F2-R-DIP_ctrl" joint="F2-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
+    <position name="F3-R-MCP2_ctrl" joint="F3-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
+    <position name="F3-R-MCP1_ctrl" joint="F3-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
+    <position name="F3-R-PIP_ctrl" joint="F3-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
+    <position name="F3-R-DIP_ctrl" joint="F3-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
+    <position name="F4-R-MCP2_ctrl" joint="F4-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
+    <position name="F4-R-MCP1_ctrl" joint="F4-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
+    <position name="F4-R-PIP_ctrl" joint="F4-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
+    <position name="F4-R-DIP_ctrl" joint="F4-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
+    <position name="F5-R-MCP2_ctrl" joint="F5-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
+    <position name="F5-R-MCP1_ctrl" joint="F5-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
+    <position name="F5-R-PIP_ctrl" joint="F5-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
+    <position name="F5-R-DIP_ctrl" joint="F5-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
+  </actuator>
+  <contact>
+    <exclude body1="HOUSING-L" body2="WRIST-PALM-L" />
+    <exclude body1="WRIST-PALM-L" body2="PALM-L" />
+    <exclude body1="HOUSING-L" body2="PALM-L" />
+    <exclude body1="PALM-L" body2="F1-L-MCP2" />
+    <exclude body1="PALM-L" body2="F1-L-MCP1" />
+    <exclude body1="F1-L-MCP2" body2="F1-L-MCP1" />
+    <exclude body1="F1-L-MCP1" body2="F1-L-PIP" />
+    <exclude body1="F1-L-PIP" body2="F1-L-DIP" />
+    <exclude body1="PALM-L" body2="F2-L-MCP2" />
+    <exclude body1="PALM-L" body2="F2-L-MCP1" />
+    <exclude body1="F2-L-MCP2" body2="F2-L-MCP1" />
+    <exclude body1="F2-L-MCP1" body2="F2-L-PIP" />
+    <exclude body1="F2-L-PIP" body2="F2-L-DIP" />
+    <exclude body1="PALM-L" body2="F3-L-MCP2" />
+    <exclude body1="PALM-L" body2="F3-L-MCP1" />
+    <exclude body1="F3-L-MCP2" body2="F3-L-MCP1" />
+    <exclude body1="F3-L-MCP1" body2="F3-L-PIP" />
+    <exclude body1="F3-L-PIP" body2="F3-L-DIP" />
+    <exclude body1="PALM-L" body2="F4-L-MCP2" />
+    <exclude body1="PALM-L" body2="F4-L-MCP1" />
+    <exclude body1="F4-L-MCP2" body2="F4-L-MCP1" />
+    <exclude body1="F4-L-MCP1" body2="F4-L-PIP" />
+    <exclude body1="F4-L-PIP" body2="F4-L-DIP" />
+    <exclude body1="PALM-L" body2="F5-L-MCP2" />
+    <exclude body1="PALM-L" body2="F5-L-MCP1" />
+    <exclude body1="F5-L-MCP2" body2="F5-L-MCP1" />
+    <exclude body1="F5-L-MCP1" body2="F5-L-PIP" />
+    <exclude body1="F5-L-PIP" body2="F5-L-DIP" />
+    <exclude body1="F2-L-MCP1" body2="F3-L-MCP1" />
+    <exclude body1="F3-L-MCP1" body2="F4-L-MCP1" />
+    <exclude body1="HOUSING-R" body2="WRIST-PALM-R" />
+    <exclude body1="WRIST-PALM-R" body2="PALM-R" />
+    <exclude body1="HOUSING-R" body2="PALM-R" />
+    <exclude body1="PALM-R" body2="F1-R-MCP2" />
+    <exclude body1="PALM-R" body2="F1-R-MCP1" />
+    <exclude body1="F1-R-MCP2" body2="F1-R-MCP1" />
+    <exclude body1="F1-R-MCP1" body2="F1-R-PIP" />
+    <exclude body1="F1-R-PIP" body2="F1-R-DIP" />
+    <exclude body1="PALM-R" body2="F2-R-MCP2" />
+    <exclude body1="PALM-R" body2="F2-R-MCP1" />
+    <exclude body1="F2-R-MCP2" body2="F2-R-MCP1" />
+    <exclude body1="F2-R-MCP1" body2="F2-R-PIP" />
+    <exclude body1="F2-R-PIP" body2="F2-R-DIP" />
+    <exclude body1="PALM-R" body2="F3-R-MCP2" />
+    <exclude body1="PALM-R" body2="F3-R-MCP1" />
+    <exclude body1="F3-R-MCP2" body2="F3-R-MCP1" />
+    <exclude body1="F3-R-MCP1" body2="F3-R-PIP" />
+    <exclude body1="F3-R-PIP" body2="F3-R-DIP" />
+    <exclude body1="PALM-R" body2="F4-R-MCP2" />
+    <exclude body1="PALM-R" body2="F4-R-MCP1" />
+    <exclude body1="F4-R-MCP2" body2="F4-R-MCP1" />
+    <exclude body1="F4-R-MCP1" body2="F4-R-PIP" />
+    <exclude body1="F4-R-PIP" body2="F4-R-DIP" />
+    <exclude body1="PALM-R" body2="F5-R-MCP2" />
+    <exclude body1="PALM-R" body2="F5-R-MCP1" />
+    <exclude body1="F5-R-MCP2" body2="F5-R-MCP1" />
+    <exclude body1="F5-R-MCP1" body2="F5-R-PIP" />
+    <exclude body1="F5-R-PIP" body2="F5-R-DIP" />
+    <exclude body1="F2-R-MCP1" body2="F3-R-MCP1" />
+    <exclude body1="F3-R-MCP1" body2="F4-R-MCP1" />
+    <exclude body1="openarm_body_link0" body2="Hand_L_base_link" />
+    <exclude body1="openarm_body_link0" body2="HOUSING-L" />
+    <exclude body1="openarm_body_link0" body2="WRIST-PALM-L" />
+    <exclude body1="openarm_body_link0" body2="PALM-L" />
+    <exclude body1="openarm_body_link0" body2="F1-L-MCP2" />
+    <exclude body1="openarm_body_link0" body2="F1-L-MCP1" />
+    <exclude body1="openarm_body_link0" body2="F1-L-PIP" />
+    <exclude body1="openarm_body_link0" body2="F1-L-DIP" />
+    <exclude body1="openarm_body_link0" body2="F2-L-MCP2" />
+    <exclude body1="openarm_body_link0" body2="F2-L-MCP1" />
+    <exclude body1="openarm_body_link0" body2="F2-L-PIP" />
+    <exclude body1="openarm_body_link0" body2="F2-L-DIP" />
+    <exclude body1="openarm_body_link0" body2="F3-L-MCP2" />
+    <exclude body1="openarm_body_link0" body2="F3-L-MCP1" />
+    <exclude body1="openarm_body_link0" body2="F3-L-PIP" />
+    <exclude body1="openarm_body_link0" body2="F3-L-DIP" />
+    <exclude body1="openarm_body_link0" body2="F4-L-MCP2" />
+    <exclude body1="openarm_body_link0" body2="F4-L-MCP1" />
+    <exclude body1="openarm_body_link0" body2="F4-L-PIP" />
+    <exclude body1="openarm_body_link0" body2="F4-L-DIP" />
+    <exclude body1="openarm_body_link0" body2="F5-L-MCP2" />
+    <exclude body1="openarm_body_link0" body2="F5-L-MCP1" />
+    <exclude body1="openarm_body_link0" body2="F5-L-PIP" />
+    <exclude body1="openarm_body_link0" body2="F5-L-DIP" />
+    <exclude body1="openarm_body_link0" body2="Hand_R_base_link" />
+    <exclude body1="openarm_body_link0" body2="HOUSING-R" />
+    <exclude body1="openarm_body_link0" body2="WRIST-PALM-R" />
+    <exclude body1="openarm_body_link0" body2="PALM-R" />
+    <exclude body1="openarm_body_link0" body2="F1-R-MCP2" />
+    <exclude body1="openarm_body_link0" body2="F1-R-MCP1" />
+    <exclude body1="openarm_body_link0" body2="F1-R-PIP" />
+    <exclude body1="openarm_body_link0" body2="F1-R-DIP" />
+    <exclude body1="openarm_body_link0" body2="F2-R-MCP2" />
+    <exclude body1="openarm_body_link0" body2="F2-R-MCP1" />
+    <exclude body1="openarm_body_link0" body2="F2-R-PIP" />
+    <exclude body1="openarm_body_link0" body2="F2-R-DIP" />
+    <exclude body1="openarm_body_link0" body2="F3-R-MCP2" />
+    <exclude body1="openarm_body_link0" body2="F3-R-MCP1" />
+    <exclude body1="openarm_body_link0" body2="F3-R-PIP" />
+    <exclude body1="openarm_body_link0" body2="F3-R-DIP" />
+    <exclude body1="openarm_body_link0" body2="F4-R-MCP2" />
+    <exclude body1="openarm_body_link0" body2="F4-R-MCP1" />
+    <exclude body1="openarm_body_link0" body2="F4-R-PIP" />
+    <exclude body1="openarm_body_link0" body2="F4-R-DIP" />
+    <exclude body1="openarm_body_link0" body2="F5-R-MCP2" />
+    <exclude body1="openarm_body_link0" body2="F5-R-MCP1" />
+    <exclude body1="openarm_body_link0" body2="F5-R-PIP" />
+    <exclude body1="openarm_body_link0" body2="F5-R-DIP" />
+  </contact>
+  <keyframe>
+    <key name="home" qpos="0.0 0.0 0.0 1.570796 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.570796 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0" />
+  </keyframe>
+</mujoco>
