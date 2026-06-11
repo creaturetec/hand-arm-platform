@@ -27,8 +27,8 @@ All 54 actuators are **position servos** (`<position>` in MJCF). Set `data.ctrl[
 
 | ctrl | Actuator | Joint | Range (rad) | kp | kv |
 |:----:|----------|-------|-------------|---:|---:|
-| 10 | `WRIST-PALM-L_ctrl` | `WRIST-PALM-L` | [−0.785, 0.785] | 13.2 | 0.404 |
-| 11 | `PALM-L_ctrl` | `PALM-L` | [−1.22, 1.22] | 6.95 | 0.285 |
+| 10 | `WRIST-PALM-L_ctrl` | WRIST-PALM-L | [−0.785, 0.785] | 13.2 | 0.404 |
+| 11 | `PALM-L_ctrl` | PALM-L | [−1.22, 1.22] | 6.95 | 0.285 |
 | 12–15 | `F1-L-{MCP2,MCP1,PIP,DIP}_ctrl` | Thumb L | see XML | 6.62/4.76/0.9/0.9 | — |
 | 16–19 | `F2-L-{MCP2,MCP1,PIP,DIP}_ctrl` | Index L | see XML | 6.62/4.76/0.9/0.9 | — |
 | 20–23 | `F3-L-{MCP2,MCP1,PIP,DIP}_ctrl` | Middle L | see XML | 6.62/4.76/0.9/0.9 | — |

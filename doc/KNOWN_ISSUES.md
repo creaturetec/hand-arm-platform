@@ -43,43 +43,12 @@ You must implement equivalent contact filtering and control on the simulator sid
 
 ---
 
-## Uncalibrated Parameters
-
-| Parameter | Source | Impact |
-|-----------|--------|--------|
-| Mass & inertia | CAD export | May not match real hardware |
-| Arm kp/kv | Hand-tuned for similar step response | Not factory/calibrated values |
-| Hand kp/kv | Reference values | Not load-calibrated |
-| Joint damping/friction | Manual estimates | Not physically measured |
-| Arm joint damping | DM8009: 1.0, DM4340: 0.9, DM4310: 0.01 | Artificial values |
-
-**Recommendation**: Treat all gains and dynamics parameters as initial values. Expect to re-tune for your training task.
-
----
-
 ## Collision Mesh Gotchas
 
 - All collision meshes are **single convex hulls** per link (not decomposed).
 - In concave areas (e.g., finger inner surfaces), the collision hull is **larger than the visual mesh**, causing apparent "floating" contacts.
 - Collision STL files for hands end with `_collision.STL`, stored in separate directories.
 - The body pedestal (`openarm_body_link0`) has collision excluded with **all** hand links on both sides. If your task requires the arm base to interact with the hands, you need to selectively re-enable those pairs.
-
----
-
-## What's Safe to Tune
-
-| Parameter | Safe to Tune? | Notes |
-|-----------|:-------------:|-------|
-| Actuator kp/kv | ✅ Yes | Expected to need task-specific tuning |
-| Actuator forcerange | ✅ Yes | Strongly recommended for hand actuators |
-| Joint damping | ✅ Yes | Current values are estimates |
-| Contact exclude pairs | ✅ Yes | Add/remove as needed for your task |
-| Sensors / cameras | ✅ Yes | None defined — add what you need |
-| Timestep | ✅ Yes | Default 0.001s; adjust for stability/speed |
-| Collision mesh files | ⚠️ Careful | Replacing hulls changes contact behavior significantly |
-| Joint ranges | ⚠️ Careful | These reflect real hardware limits |
-| Kinematic chain (body pos/quat) | ❌ No | These define the physical robot geometry |
-| Mass/inertia values | ⚠️ Careful | Only change if you have better measurements |
 
 ---
 
