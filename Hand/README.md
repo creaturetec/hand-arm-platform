@@ -66,7 +66,7 @@ Initial MJCF contact count is expected to be zero at the default pose.
 
 ## Physical Parameters
 
-Joint effort and velocity limits are defined in the URDF. The MJCF includes MuJoCo-specific joint defaults and position actuator gains. These actuator gains and physical parameters are coarse reference values only, and should be calibrated against real hardware data or training performance before being treated as final.
+Joint effort and velocity limits are defined in the URDF. Hand position limits are measured relative to the current `qpos = 0` pose and are documented in [`doc/ACTUATOR_MAP.md`](../doc/ACTUATOR_MAP.md). The neutral spread of F2, F4, and F5 is encoded in the joint-frame orientation, so all hand joint coordinates remain zero at the default pose. The MJCF includes MuJoCo-specific joint defaults and position actuator gains. These actuator gains and physical parameters are coarse reference values only, and should be calibrated against real hardware data or training performance before being treated as final.
 
 ## Validation
 

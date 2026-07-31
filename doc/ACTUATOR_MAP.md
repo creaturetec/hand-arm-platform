@@ -27,8 +27,8 @@ All 54 actuators are **position servos** (`<position>` in MJCF). Set `data.ctrl[
 
 | ctrl | Actuator | Joint | Range (rad) | kp | kv |
 |:----:|----------|-------|-------------|---:|---:|
-| 10 | `WRIST-PALM-L_ctrl` | WRIST-PALM-L | [−0.785, 0.785] | 13.2 | 0.404 |
-| 11 | `PALM-L_ctrl` | PALM-L | [−1.22, 1.22] | 6.95 | 0.285 |
+| 10 | `WRIST-PALM-L_ctrl` | WRIST-PALM-L | [−1.222, 1.222] | 13.2 | 0.404 |
+| 11 | `PALM-L_ctrl` | PALM-L | [−0.785, 0.785] | 6.95 | 0.285 |
 | 12–15 | `F1-L-{MCP2,MCP1,PIP,DIP}_ctrl` | Thumb L | see XML | 6.62/4.76/0.9/0.9 | — |
 | 16–19 | `F2-L-{MCP2,MCP1,PIP,DIP}_ctrl` | Index L | see XML | 6.62/4.76/0.9/0.9 | — |
 | 20–23 | `F3-L-{MCP2,MCP1,PIP,DIP}_ctrl` | Middle L | see XML | 6.62/4.76/0.9/0.9 | — |
@@ -42,16 +42,30 @@ Symmetric to left hand. `ctrl[32]` = `WRIST-PALM-R_ctrl`, ..., `ctrl[53]` = `F5-
 > **Thumb = F1, Index = F2, Middle = F3, Ring = F4, Pinky = F5**
 > Per-finger chain: MCP2 (ab/adduction) → MCP1 (flexion) → PIP → DIP
 
-### Finger Joint Ranges (identical for F2–F5)
+### Hand Joint Ranges (relative to current `qpos = 0`)
 
-| Joint | Range (rad) |
-|-------|-------------|
-| MCP2 | [−0.61, 0.61] |
-| MCP1 | [−0.52, 1.57] |
-| PIP | [0, 1.92] |
-| DIP | [0, 1.22] |
+All hand limits are measured from the current default pose. The same numeric limits apply to the left and right hands; mirrored joint axes produce mirrored physical motion.
 
-Thumb (F1) has different ranges: MCP2 [−0.35, 0.61], MCP1 [−0.52, 0.785], PIP [−0.35, 1.31], DIP [−0.35, 1.31].
+| Joint group | Joint | Range (deg) | Range (rad) |
+|-------------|-------|-------------|-------------|
+| Wrist WR1 | `WRIST-PALM-{L\|R}` | [−70°, +70°] | [−1.2217305, 1.2217305] |
+| Wrist WR2 | `PALM-{L\|R}` | [−45°, +45°] | [−0.7853982, 0.7853982] |
+| Thumb F1 | MCP2 | [−25°, +45°] | [−0.4363323, 0.7853982] |
+| Thumb F1 | MCP1 | [−35°, +50°] | [−0.6108652, 0.8726646] |
+| Thumb F1 | PIP | [−30°, +75°] | [−0.5235988, 1.3089969] |
+| Thumb F1 | DIP | [−25°, +80°] | [−0.4363323, 1.3962634] |
+| Fingers F2–F5 | MCP1 | [−35°, +95°] | [−0.6108652, 1.6580628] |
+| Fingers F2–F5 | PIP | [−5°, +105°] | [−0.0872665, 1.8325957] |
+| Fingers F2–F5 | DIP | [−5°, +75°] | [−0.0872665, 1.3089969] |
+
+MCP2 ab/adduction limits vary by finger:
+
+| Finger | Range (deg) | Range (rad) |
+|--------|-------------|-------------|
+| F2 (index) | [−40°, +40°] | [−0.6981317, 0.6981317] |
+| F3 (middle) | [−40°, +35°] | [−0.6981317, 0.6108652] |
+| F4 (ring) | [−40°, +30°] | [−0.6981317, 0.5235988] |
+| F5 (pinky) | [−40°, +40°] | [−0.6981317, 0.6981317] |
 
 ---
 
@@ -97,15 +111,28 @@ data.ctrl[ctrl_id] = 0.5  # radians
 
 ---
 
-## Home Keyframe
+## Home Keyframe and Default Hand Pose
 
 The MJCF `home` keyframe is **not all-zeros**:
 
 - `qpos[3]` (`openarm_left_joint4`) = **π/2** (1.5708 rad)
 - `qpos[30]` (`openarm_right_joint4`) = **π/2** (1.5708 rad)
-- All other joints = 0.0
+- All other joints, including all 44 hand joints, = 0.0
 
-Both elbow joints fold forward at π/2. Initial contact count `ncon == 0`.
+Both elbow joints fold forward at π/2. The hand limits above are relative to these zero-valued hand joint coordinates. Initial contact count is `ncon == 0`.
+
+### Default finger-frame orientation
+
+The nonzero neutral spread of F2, F4, and F5 is encoded in the URDF joint `origin/rpy` and the equivalent MJCF body quaternion, not in `qpos`. Therefore resetting every hand joint to zero preserves the current default finger pose.
+
+| MCP2 joint | Right URDF `rpy` (rad) | Left URDF `rpy` (rad) | Physical neutral offset |
+|------------|--------------------------|-------------------------|-------------------------|
+| F2 | `0 0 −0.2618` | `3.1416 0 2.8798` | right −15°, left +15° |
+| F3 | `0 0 0` | `3.1416 0 3.1416` | 0° |
+| F4 | `0 0 0.2618` | `3.1416 0 3.4034` | right +15°, left −15° |
+| F5 | `0 0 0.5934` | `3.1416 0 3.7350` | right +34°, left −34° |
+
+The left-hand RPY values include the existing mirrored-link transform (`roll ≈ π`).
 
 ---
 
