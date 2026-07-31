@@ -71,56 +71,56 @@
         <geom name="HOUSING-R_collision" type="mesh" mesh="HOUSING-R_collision" contype="1" conaffinity="1" group="3" rgba="0.79215686 0.81960784 0.93333333 1.00000000"/>
         <body name="WRIST-PALM-R" pos="0.1838 -0.00041 -0.00127">
           <inertial pos="-2.6e-06 0.0098149 -0.0002516" mass="0.0356289" fullinertia="0.0000063 0.0000075 0.0000061 0 0 0"/>
-          <joint name="WRIST-PALM-R" pos="0 0 0" axis="0 0 -1" range="-0.785 0.785" class="wrist_joint"/>
+          <joint name="WRIST-PALM-R" pos="0 0 0" axis="0 0 -1" range="-1.2217305 1.2217305" class="wrist_joint"/>
           <geom name="WRIST-PALM-R_visual" type="mesh" mesh="WRIST-PALM-R_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
           <geom name="WRIST-PALM-R_collision" type="mesh" mesh="WRIST-PALM-R_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
           <body name="PALM-R" pos="-0.019318 0.030212 -0.0003385">
             <inertial pos="0.0146895 0.0384383 -0.0020085" mass="0.1364399" fullinertia="0.0000619 0.0000437 0.0000993 -0.0000115 0.0000014 0.0000038"/>
-            <joint name="PALM-R" pos="0 0 0" axis="1 0 0" range="-1.22 1.22" class="wrist_joint"/>
+            <joint name="PALM-R" pos="0 0 0" axis="1 0 0" range="-0.7853982 0.7853982" class="wrist_joint"/>
             <geom name="PALM-R_visual" type="mesh" mesh="PALM-R_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
             <geom name="PALM-R_collision" type="mesh" mesh="PALM-R_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
             <body name="F1-R-MCP2" pos="0.0416107 0.0193912 0.0035">
               <inertial pos="0.0051493 0.0066497 0.003465" mass="0.0034154" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0"/>
-              <joint name="F1-R-MCP2" pos="0 0 0" axis="0.7660444 -0.6427876 0" range="-0.35 0.61" class="MCP_joint"/>
+              <joint name="F1-R-MCP2" pos="0 0 0" axis="0.7660444 -0.6427876 0" range="-0.4363323 0.7853982" class="MCP_joint"/>
               <geom name="F1-R-MCP2_visual" type="mesh" mesh="F1-R-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
               <geom name="F1-R-MCP2_collision" type="mesh" mesh="F1-R-MCP2_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
               <body name="F1-R-MCP1" pos="0.0050544 0.0068014 0.0101617">
                 <inertial pos="0.0117416 0.0168702 0.0016672" mass="0.022955" fullinertia="0.0000022 0.0000021 0.0000023 -0.0000007 -0.0000003 -0.0000003"/>
-                <joint name="F1-R-MCP1" pos="0 0 0" axis="-0.2450208 -0.2920044 0.9244989" range="-0.52 0.785" class="MCP_joint"/>
+                <joint name="F1-R-MCP1" pos="0 0 0" axis="-0.2450208 -0.2920044 0.9244989" range="-0.6108652 0.8726646" class="MCP_joint"/>
                 <geom name="F1-R-MCP1_visual" type="mesh" mesh="F1-R-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                 <geom name="F1-R-MCP1_collision" type="mesh" mesh="F1-R-MCP1_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                 <body name="F1-R-PIP" pos="0.0250873 0.0300535 0.0139239">
                   <inertial pos="0.0101665 0.011579 0.0018089" mass="0.010446" fullinertia="0.0000007 0.0000006 0.0000007 -0.0000002 -0.0000001 -0.0000001"/>
-                  <joint name="F1-R-PIP" pos="0 0 0" axis="-0.2450208 -0.2920044 0.9244989" range="-0.35 1.31" class="PIP_joint"/>
+                  <joint name="F1-R-PIP" pos="0 0 0" axis="-0.2450208 -0.2920044 0.9244989" range="-0.5235988 1.3089969" class="PIP_joint"/>
                   <geom name="F1-R-PIP_visual" type="mesh" mesh="F1-R-PIP_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   <geom name="F1-R-PIP_collision" type="mesh" mesh="F1-R-PIP_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   <body name="F1-R-DIP" pos="0.0178277 0.0212462 0.0114355">
                     <inertial pos="0.009624 0.0095618 0.0010277" mass="0.0078009" fullinertia="0.0000004 0.0000004 0.0000004 -0.0000001 0 0"/>
-                    <joint name="F1-R-DIP" pos="0 0 0" axis="-0.2450208 -0.2920044 0.9244989" range="-0.35 1.31" class="DIP_joint"/>
+                    <joint name="F1-R-DIP" pos="0 0 0" axis="-0.2450208 -0.2920044 0.9244989" range="-0.4363323 1.3962634" class="DIP_joint"/>
                     <geom name="F1-R-DIP_visual" type="mesh" mesh="F1-R-DIP_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                     <geom name="F1-R-DIP_collision" type="mesh" mesh="F1-R-DIP_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   </body>
                 </body>
               </body>
             </body>
-            <body name="F2-R-MCP2" pos="0.0475313 0.0778613 0.0023">
+            <body name="F2-R-MCP2" pos="0.0475313 0.0778613 0.0023" quat="0.99144482142 0 0 -0.130526495702">
               <inertial pos="0 0.0032303 -0.0059951" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0"/>
-              <joint name="F2-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.61 0.61" class="MCP_joint"/>
+              <joint name="F2-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.6981317 0.6981317" class="MCP_joint"/>
               <geom name="F2-R-MCP2_visual" type="mesh" mesh="F2-R-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
               <geom name="F2-R-MCP2_collision" type="mesh" mesh="F2-R-MCP2_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
               <body name="F2-R-MCP1" pos="0.0029 0.01 -0.0056">
                 <inertial pos="-0.0028991 0.0177237 -0.0006809" mass="0.0145304" fullinertia="0.0000022 0.0000005 0.0000024 0 0 0.0000001"/>
-                <joint name="F2-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.52 1.57" class="MCP_joint"/>
+                <joint name="F2-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.6108652 1.6580628" class="MCP_joint"/>
                 <geom name="F2-R-MCP1_visual" type="mesh" mesh="F2-R-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                 <geom name="F2-R-MCP1_collision" type="mesh" mesh="F2-R-MCP1_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                 <body name="F2-R-PIP" pos="0 0.043109 -0.0016488">
                   <inertial pos="-0.0028992 0.0111292 -0.000448" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0"/>
-                  <joint name="F2-R-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint"/>
+                  <joint name="F2-R-PIP" pos="0 0 0" axis="1 0 0" range="-0.0872665 1.8325957" class="PIP_joint"/>
                   <geom name="F2-R-PIP_visual" type="mesh" mesh="F2-R-PIP_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   <geom name="F2-R-PIP_collision" type="mesh" mesh="F2-R-PIP_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   <body name="F2-R-DIP" pos="0.0026 0.023 0.0001">
                     <inertial pos="-0.0054993 0.0103728 -0.0010699" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0"/>
-                    <joint name="F2-R-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint"/>
+                    <joint name="F2-R-DIP" pos="0 0 0" axis="1 0 0" range="-0.0872665 1.3089969" class="DIP_joint"/>
                     <geom name="F2-R-DIP_visual" type="mesh" mesh="F2-R-DIP_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                     <geom name="F2-R-DIP_collision" type="mesh" mesh="F2-R-DIP_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   </body>
@@ -129,70 +129,70 @@
             </body>
             <body name="F3-R-MCP2" pos="0.0279652 0.0831041 0.0023">
               <inertial pos="0 0.0032303 -0.0059951" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0"/>
-              <joint name="F3-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.61 0.61" class="MCP_joint"/>
+              <joint name="F3-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.6981317 0.6108652" class="MCP_joint"/>
               <geom name="F3-R-MCP2_visual" type="mesh" mesh="F3-R-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
               <geom name="F3-R-MCP2_collision" type="mesh" mesh="F3-R-MCP2_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
               <body name="F3-R-MCP1" pos="0.0029 0.01 -0.0056">
                 <inertial pos="-0.0028991 0.0177237 -0.0006809" mass="0.0145304" fullinertia="0.0000022 0.0000005 0.0000024 0 0 0.0000001"/>
-                <joint name="F3-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.52 1.57" class="MCP_joint"/>
+                <joint name="F3-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.6108652 1.6580628" class="MCP_joint"/>
                 <geom name="F3-R-MCP1_visual" type="mesh" mesh="F3-R-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                 <geom name="F3-R-MCP1_collision" type="mesh" mesh="F3-R-MCP1_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                 <body name="F3-R-PIP" pos="0.0032 0.043109 -0.0016488">
                   <inertial pos="-0.0060992 0.0111292 -0.000448" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0"/>
-                  <joint name="F3-R-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint"/>
+                  <joint name="F3-R-PIP" pos="0 0 0" axis="1 0 0" range="-0.0872665 1.8325957" class="PIP_joint"/>
                   <geom name="F3-R-PIP_visual" type="mesh" mesh="F3-R-PIP_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   <geom name="F3-R-PIP_collision" type="mesh" mesh="F3-R-PIP_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   <body name="F3-R-DIP" pos="-0.0006 0.023 0">
                     <inertial pos="-0.0054993 0.0103728 -0.001045" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0"/>
-                    <joint name="F3-R-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint"/>
+                    <joint name="F3-R-DIP" pos="0 0 0" axis="1 0 0" range="-0.0872665 1.3089969" class="DIP_joint"/>
                     <geom name="F3-R-DIP_visual" type="mesh" mesh="F3-R-DIP_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                     <geom name="F3-R-DIP_collision" type="mesh" mesh="F3-R-DIP_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   </body>
                 </body>
               </body>
             </body>
-            <body name="F4-R-MCP2" pos="0.008399 0.0778613 0.0023">
+            <body name="F4-R-MCP2" pos="0.008399 0.0778613 0.0023" quat="0.99144482142 0 0 0.130526495702">
               <inertial pos="0 0.0032303 -0.0059951" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0"/>
-              <joint name="F4-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.61 0.61" class="MCP_joint"/>
+              <joint name="F4-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.6981317 0.5235988" class="MCP_joint"/>
               <geom name="F4-R-MCP2_visual" type="mesh" mesh="F4-R-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
               <geom name="F4-R-MCP2_collision" type="mesh" mesh="F4-R-MCP2_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
               <body name="F4-R-MCP1" pos="0.0029 0.01 -0.0056">
                 <inertial pos="-0.0028991 0.0177237 -0.0006809" mass="0.0145304" fullinertia="0.0000022 0.0000005 0.0000024 0 0 0.0000001"/>
-                <joint name="F4-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.52 1.57" class="MCP_joint"/>
+                <joint name="F4-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.6108652 1.6580628" class="MCP_joint"/>
                 <geom name="F4-R-MCP1_visual" type="mesh" mesh="F4-R-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                 <geom name="F4-R-MCP1_collision" type="mesh" mesh="F4-R-MCP1_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                 <body name="F4-R-PIP" pos="0.0032 0.043109 -0.0016488">
                   <inertial pos="-0.0060992 0.0111292 -0.000448" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0"/>
-                  <joint name="F4-R-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint"/>
+                  <joint name="F4-R-PIP" pos="0 0 0" axis="1 0 0" range="-0.0872665 1.8325957" class="PIP_joint"/>
                   <geom name="F4-R-PIP_visual" type="mesh" mesh="F4-R-PIP_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   <geom name="F4-R-PIP_collision" type="mesh" mesh="F4-R-PIP_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   <body name="F4-R-DIP" pos="-0.0006 0.023 0">
                     <inertial pos="-0.0054993 0.0103728 -0.001045" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0"/>
-                    <joint name="F4-R-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint"/>
+                    <joint name="F4-R-DIP" pos="0 0 0" axis="1 0 0" range="-0.0872665 1.3089969" class="DIP_joint"/>
                     <geom name="F4-R-DIP_visual" type="mesh" mesh="F4-R-DIP_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                     <geom name="F4-R-DIP_collision" type="mesh" mesh="F4-R-DIP_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   </body>
                 </body>
               </body>
             </body>
-            <body name="F5-R-MCP2" pos="-0.0111988 0.0632092 0.0023">
+            <body name="F5-R-MCP2" pos="-0.0111988 0.0632092 0.0023" quat="0.956306502235 0 0 0.292365992863">
               <inertial pos="0 0.0032303 -0.0059951" mass="0.0025219" fullinertia="0.0000002 0.0000001 0.0000001 0 0 0"/>
-              <joint name="F5-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.61 0.61" class="MCP_joint"/>
+              <joint name="F5-R-MCP2" pos="0 0 0" axis="0 0 -1" range="-0.6981317 0.6981317" class="MCP_joint"/>
               <geom name="F5-R-MCP2_visual" type="mesh" mesh="F5-R-MCP2_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
               <geom name="F5-R-MCP2_collision" type="mesh" mesh="F5-R-MCP2_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
               <body name="F5-R-MCP1" pos="-0.0029 0.01 -0.0056">
                 <inertial pos="0.0029009 0.0177237 -0.0006809" mass="0.0145304" fullinertia="0.0000022 0.0000005 0.0000024 0 0 0.0000001"/>
-                <joint name="F5-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.52 1.57" class="MCP_joint"/>
+                <joint name="F5-R-MCP1" pos="0 0 0" axis="1 0 0" range="-0.6108652 1.6580628" class="MCP_joint"/>
                 <geom name="F5-R-MCP1_visual" type="mesh" mesh="F5-R-MCP1_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                 <geom name="F5-R-MCP1_collision" type="mesh" mesh="F5-R-MCP1_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                 <body name="F5-R-PIP" pos="0.009 0.043109 -0.0016488">
                   <inertial pos="-0.0060992 0.0111292 -0.000448" mass="0.0050184" fullinertia="0.0000003 0.0000001 0.0000003 0 0 0"/>
-                  <joint name="F5-R-PIP" pos="0 0 0" axis="1 0 0" range="0 1.92" class="PIP_joint"/>
+                  <joint name="F5-R-PIP" pos="0 0 0" axis="1 0 0" range="-0.0872665 1.8325957" class="PIP_joint"/>
                   <geom name="F5-R-PIP_visual" type="mesh" mesh="F5-R-PIP_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   <geom name="F5-R-PIP_collision" type="mesh" mesh="F5-R-PIP_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   <body name="F5-R-DIP" pos="-0.0005906 0.022994 0.0001022">
                     <inertial pos="-0.0055016 0.0103744 -0.0010705" mass="0.0036931" fullinertia="0.0000001 0.0000001 0.0000002 0 0 0"/>
-                    <joint name="F5-R-DIP" pos="0 0 0" axis="1 0 0" range="0 1.22" class="DIP_joint"/>
+                    <joint name="F5-R-DIP" pos="0 0 0" axis="1 0 0" range="-0.0872665 1.3089969" class="DIP_joint"/>
                     <geom name="F5-R-DIP_visual" type="mesh" mesh="F5-R-DIP_visual" contype="0" conaffinity="0" group="1" density="0" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                     <geom name="F5-R-DIP_collision" type="mesh" mesh="F5-R-DIP_collision" contype="1" conaffinity="1" group="3" rgba="1.00000000 1.00000000 1.00000000 1.00000000"/>
                   </body>
