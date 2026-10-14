@@ -23,7 +23,7 @@ All 54 actuators are **position servos** (`<position>` in MJCF). Set `data.ctrl[
 | 8 | `right_joint4_ctrl` | `openarm_right_joint4` | DM4340 | [0, 2.444] | 190 | 14 | ±27 |
 | 9 | `right_joint5_ctrl` | `openarm_right_joint5` | DM4310 | [−1.571, 1.571] | 30 | 1.5 | ±7 |
 
-### Left Hand Actuators (indices 10–31) — NO force limits
+### Left Hand Actuators (indices 10–31) — with force limits
 
 | ctrl | Actuator | Joint | Range (rad) | kp | kv |
 |:----:|----------|-------|-------------|---:|---:|
@@ -35,9 +35,18 @@ All 54 actuators are **position servos** (`<position>` in MJCF). Set `data.ctrl[
 | 24–27 | `F4-L-{MCP2,MCP1,PIP,DIP}_ctrl` | Ring L | see XML | 6.62/4.76/0.9/0.9 | — |
 | 28–31 | `F5-L-{MCP2,MCP1,PIP,DIP}_ctrl` | Pinky L | see XML | 6.62/4.76/0.9/0.9 | — |
 
-### Right Hand Actuators (indices 32–53) — NO force limits
+### Right Hand Actuators (indices 32–53) — with force limits
 
 Symmetric to left hand. `ctrl[32]` = `WRIST-PALM-R_ctrl`, ..., `ctrl[53]` = `F5-R-DIP_ctrl`.
+
+Hand force limits now match the existing integrated URDF `effort` values, in N·m. They are provisional model limits, not measured continuous torque ratings:
+
+| Joint group | Symmetric force limit (N·m) |
+|------------|---------------------------:|
+| WRIST-PALM | ±12 |
+| PALM | ±10 |
+| F1 MCP2 / MCP1 / PIP / DIP | ±6.5 / ±6 / ±3.5 / ±1.7 |
+| F2–F5 MCP2 / MCP1 / PIP / DIP | ±6 / ±5.5 / ±3 / ±1.5 |
 
 > **Thumb = F1, Index = F2, Middle = F3, Ring = F4, Pinky = F5**
 > Per-finger chain: MCP2 (ab/adduction) → MCP1 (flexion) → PIP → DIP
@@ -119,7 +128,11 @@ The MJCF `home` keyframe is **not all-zeros**:
 - `qpos[30]` (`openarm_right_joint4`) = **π/2** (1.5708 rad)
 - All other joints, including all 44 hand joints, = 0.0
 
+The keyframe also sets `ctrl[3]` and `ctrl[8]` to 1.570796, with other controls zero. This prevents an immediate command to straighten the elbows after a home reset. Use `mujoco.mj_resetDataKeyframe(model, data, model.key("home").id)` to load both arrays; their index orders differ.
+
 Both elbow joints fold forward at π/2. The hand limits above are relative to these zero-valued hand joint coordinates. Initial contact count is `ncon == 0`.
+
+Gravity is enabled and the integrator is `implicitfast`. Arm kp/kv are unchanged. Position-only control has a small steady-state error under gravity; load compensation belongs in the controller if exact pose holding is required.
 
 ### Default finger-frame orientation
 

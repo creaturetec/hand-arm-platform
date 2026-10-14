@@ -7,12 +7,12 @@ The model has 62 bodies. The tree structure is:
 ```
 worldbody
 └── openarm_body_link0                    ← Pedestal (fixed, Z-stretched 1.5×)
-    ├── openarm_left_base_link
+    ├── openarm_left_base_link           ← Fixed shoulder mount, not the pedestal
     │   └── openarm_left_link1            ← joint1 (shoulder yaw)
     │       └── openarm_left_link2        ← joint2 (shoulder pitch)
     │           └── openarm_left_link3    ← joint3 (upper arm rotation)
     │               └── openarm_left_link4  ← joint4 (elbow)
-    │                   └── openarm_left_link5  ← joint5 (forearm rotation)
+    │                   └── openarm_left_link5  ← joint5 output frame + 0.05 kg flange
     │                       └── Hand_L_base_link
     │                           └── HOUSING-L
     │                               └── WRIST-PALM-L      ← wrist rotation
@@ -42,6 +42,7 @@ worldbody
 
 Key observations:
 - Each arm is a **serial chain** of 5 links ending at the hand housing
+- `link5` has no own geom; its inertia represents an estimated 0.05 kg steel flange on each side, approximated as a uniform disk of radius 18.6667 mm and thickness 6 mm centered on joint5. The original downstream assembly was removed. Each fixed `HOUSING` child contributes 1.8 kg with its own inertia, while the joint5 motor housing remains on the link4 side. See `KNOWN_ISSUES.md` for the flange and housing assumptions.
 - Each hand has **5 parallel finger chains** branching from `PALM`
 - Each finger is a **serial chain** of 4 links (MCP2 → MCP1 → PIP → DIP)
 - Thumb (F1) has a different joint axis configuration from F2–F5
@@ -86,16 +87,16 @@ F{digit}-{L|R}-{segment}      for fingers
 
 ## Contact Exclusions (MJCF only)
 
-The MJCF defines **62 contact exclude pairs** in the `<contact>` section. These are **not present in the URDF**.
+The MJCF defines **108 unique contact exclude pairs** in the `<contact>` section. These are **not present in the URDF**. The exclusion settings were retained during the inertia update.
 
 ### Exclusion Categories
 
 | Category | Count | Pairs |
 |----------|:-----:|-------|
-| Hand internal (per hand) | 25×2=50 | HOUSING↔WRIST-PALM, WRIST-PALM↔PALM, HOUSING↔PALM, PALM↔each MCP2, PALM↔each MCP1, within-finger adjacents, adjacent-finger MCP1s |
-| Pedestal ↔ all hand links | 2×(1+24)=~50* | `openarm_body_link0` excluded with every hand body |
+| Hand internal | 30×2=60 | HOUSING↔WRIST-PALM, WRIST-PALM↔PALM, HOUSING↔PALM, PALM↔each MCP2, PALM↔each MCP1, within-finger adjacents, adjacent-finger MCP1s |
+| Pedestal ↔ all hand links | 24×2=48 | `openarm_body_link0` excluded with every hand body |
 
-*Some pairs overlap with the above. Total unique `<exclude>` entries: **62 per hand side + body pairs**.
+Each side has 24 hand bodies, including the `Hand_*_base_link` mounting frame. The two categories do not overlap.
 
 ### Within Each Finger
 

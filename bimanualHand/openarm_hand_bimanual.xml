@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
+<!-- Arm inertia baseline: openarm/MJCF_bimanual.xml; see doc/KNOWN_ISSUES.md. -->
 <mujoco model="openarm_hand_bimanual">
   <default>
     <joint stiffness="0" ref="0.0" />
@@ -71,7 +72,7 @@
     <quality shadowsize="8192" />
   </visual>
   <statistic center="-0.02 0 0.48" extent="1.5" meansize="0.05" />
-  <option timestep="0.001" gravity="0 0 0" />
+  <option timestep="0.001" gravity="0 0 -9.81" integrator="implicitfast" />
   <asset>
 
     <material name="collision_material" rgba="0.8 0.2 0.2 0.5" />
@@ -219,44 +220,47 @@
       <geom name="openarm_body_link0_visual" type="mesh" mesh="body_link0" class="visual" material="openarm_body_link0_material" />
       <geom name="openarm_body_link0_collision" type="mesh" mesh="body_link0_symp" class="collision" />
       <body name="openarm_left_base_link" pos="0.0 0.031 1.047">
-        <inertial mass="0.487784887988258" fullinertia="0.000484733990709424 0.000682400572197824 0.000320236101430026 -1.62770678780767e-07 4.65761719998324e-09 -1.17426513474366e-08" pos="0.00253123748061566 0.0258185540330169 2.70658291858903e-05" />
+        <inertial pos="-0.00253124 0.0258186 -2.70658e-05" quat="-1.46856942085e-06 0.70739772103 0.706815721259 2.1457591538e-05" mass="1.14323" diaginertia="0.00159935 0.00113608 0.000750542" />
         <geom name="base_link_left_00" type="mesh" mesh="base_link_left_00" class="visual" material="matte_black" quat="0 0 1 0" />
         <geom name="base_link_left_01" type="mesh" mesh="base_link_left_01" class="visual" material="pale_silver" quat="0 0 1 0" />
         <geom name="base_link_left_collision_00" type="mesh" mesh="base_link_left_collision_00" class="collision" quat="0 0 1 0" />
         <body name="openarm_left_link1" pos="0 0.0625 0">
-          <inertial mass="0.561428544234246" fullinertia="0.000538144986433873 0.000373345162254971 0.000329804343882795 -4.63056685765756e-06 2.22975551768159e-08 -3.27884751984609e-08" pos="0.000900350355624244 0.0444659716892874 2.88441021165683e-05" />
+          <inertial pos="0.00090035 0.044466 2.88441e-05" quat="0.999901 -0.000371041 -5.04627e-05 -0.0140338" mass="1.14167" diaginertia="0.00109459 0.000758935 0.000670659" />
           <joint name="openarm_left_joint1" pos="0 0 0" axis="0 1 0" range="-3.4907 1.3963" actuatorfrcrange="-40 40" class="motor_DM8009" />
           <geom name="link1_left_00" type="mesh" mesh="link1_left_00" class="visual" material="matte_black" />
           <geom name="link1_left_01" type="mesh" mesh="link1_left_01" class="visual" material="pale_silver" />
           <geom name="link1_left_02" type="mesh" mesh="link1_left_02" class="visual" material="metal_silver" />
           <geom name="link1_left_collision_00" type="mesh" mesh="link1_left_collision_00" class="collision" />
           <body name="openarm_left_link2" pos="0 0.0600000000000001 0">
-            <inertial mass="0.295592749115978" fullinertia="0.000163597219145931 0.000120429707158439 8.76628866864578e-05 3.13608197607031e-10 5.55009912371659e-06 -4.00306455289745e-10" pos="-0.0247184924346635 -7.60578399428002e-08 -0.0312643102292087" />
+            <inertial pos="-0.0247185 -7.60578e-08 -0.0312643" quat="0.999342 -6.47495e-06 -0.0362804 3.02331e-06" mass="0.277509" diaginertia="0.000153968 0.000113062 8.19211e-05" />
             <joint name="openarm_left_joint2" pos="0 0 0" axis="-1 0 0" range="-3.3161 0.17453" actuatorfrcrange="-40 40" class="motor_DM8009" />
             <geom name="link2_left_00" type="mesh" mesh="link2_left_00" class="visual" material="matte_black" />
             <geom name="link2_left_01" type="mesh" mesh="link2_left_01" class="visual" material="metal_silver" />
             <geom name="link2_left_02" type="mesh" mesh="link2_left_02" class="visual" material="pale_silver" />
             <geom name="link2_left_collision_00" type="mesh" mesh="link2_left_collision_00" class="collision" />
             <body name="openarm_left_link3" pos="0 0 -0.0662500000000008">
-              <inertial mass="0.850916861288263" fullinertia="0.0010217027340552 0.000903473277290975 0.000443551676668759 -1.82210543854634e-07 -5.35782873075177e-05 -8.4199828452717e-06" pos="-0.00300861804638783 -0.000514813312550808 -0.109368241429434" />
+              <inertial pos="-0.00300862 -0.000514813 -0.109368" quat="0.998906 -0.00891348 0.0458105 0.00280505" mass="1.07386" diaginertia="0.00129561 0.00114038 0.000553361" />
               <joint name="openarm_left_joint3" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708" actuatorfrcrange="-27 27" class="motor_DM4340" />
               <geom name="link3_left_00" type="mesh" mesh="link3_left_00" class="visual" material="matte_black" />
               <geom name="link3_left_01" type="mesh" mesh="link3_left_01" class="visual" material="metal_silver" />
               <geom name="link3_left_02" type="mesh" mesh="link3_left_02" class="visual" material="pale_silver" />
               <geom name="link3_left_collision_00" type="mesh" mesh="link3_left_collision_00" class="collision" />
               <body name="openarm_left_link4" pos="0 0 -0.15375">
-                <inertial mass="0.590845933035621" fullinertia="0.000436492657493736 0.00040384685548561 0.000228213573513934 5.2455675270269e-06 -1.65547634348731e-06 3.18067426068364e-06" pos="-0.00310326243752606 -0.00136538979048502 -0.0574601379354351" />
+                <inertial pos="-0.00310326 -0.00136539 -0.0574601" quat="0.996952 0.00947325 0.00348083 0.0773554" mass="0.634853" diaginertia="0.000469894 0.000433114 0.000245134" />
                 <joint name="openarm_left_joint4" pos="0 0 0" axis="0 -1 0" range="0 2.4435" actuatorfrcrange="-27 27" class="motor_DM4340" />
                 <geom name="link4_left_00" type="mesh" mesh="link4_left_00" class="visual" material="matte_black" />
                 <geom name="link4_left_01" type="mesh" mesh="link4_left_01" class="visual" material="pale_silver" />
                 <geom name="link4_left_02" type="mesh" mesh="link4_left_02" class="visual" material="metal_silver" />
                 <geom name="link4_left_collision_00" type="mesh" mesh="link4_left_collision_00" class="collision" />
                 <body name="openarm_left_link5" pos="0 0 -0.0955000000000005">
-                  <inertial mass="0.5803968030561" fullinertia="0.000263636157719515 0.000315435352726595 0.00016654408109665 -3.12744502166655e-06 7.24104361181618e-07 1.41346881493762e-07" pos="-0.000737188580130584 0.000412406544351845 -0.047093829077211" />
+                  <!-- Steel flange estimate: 0.05 kg, radius (56 mm / 2) * 2/3, thickness 6 mm. -->
+                  <!-- COM assumed at joint5 output origin; disk normal is local Z. Motor housing stays on link4. -->
+                  <inertial pos="0 0 0" mass="0.05" diaginertia="0.00000450555555555556 0.00000450555555555556 0.00000871111111111111" />
                   <joint name="openarm_left_joint5" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708" actuatorfrcrange="-7 7" class="motor_DM4310" />
                   <body name="Hand_L_base_link" pos="0 0 -0.180" quat="0 0 -0.707106781188 0.707106781185">
                     <body name="HOUSING-L">
-                      <inertial pos="-1.11e-05 -0.085871 -0.0003395" mass="0.5561357" fullinertia="0.0010606 0.0004326 0.0012833 0.0000006 0 -0.0000165" />
+                      <!-- User-specified housing mass; original inertia scaled by 1.8 / 0.5561357. -->
+                      <inertial pos="-1.11e-05 -0.085871 -0.0003395" mass="1.8" fullinertia="0.00343275930676632 0.0014001618669688 0.00415355460906394 1.94197207623967e-06 0 -5.34042320965908e-05" />
                       <geom name="HOUSING-L_visual" type="mesh" mesh="HOUSING-L_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
                       <geom name="HOUSING-L_collision" type="mesh" mesh="HOUSING-L_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
                       <body name="WRIST-PALM-L">
@@ -400,44 +404,47 @@
         </body>
       </body>
       <body name="openarm_right_base_link" pos="0.0 -0.031 1.047">
-        <inertial mass="0.487784887988258" fullinertia="0.000484733990709424 0.000682400572197824 0.000320236101430026 1.62770678780767e-07 4.65761719998324e-09 1.17426513474366e-08" pos="0.00253123748061566 -0.0258185540330169 2.70658291858903e-05" />
+        <inertial pos="-0.00253124 -0.0258186 -2.70658e-05" quat="2.1457591538e-05 0.706815721259 0.70739772103 -1.46856942085e-06" mass="1.14323" diaginertia="0.00159935 0.00113608 0.000750542" />
         <geom name="base_link_right_00" type="mesh" mesh="base_link_right_00" class="visual" material="matte_black" quat="0 0 1 0" />
         <geom name="base_link_right_01" type="mesh" mesh="base_link_right_01" class="visual" material="pale_silver" quat="0 0 1 0" />
         <geom name="base_link_right_collision_00" type="mesh" mesh="base_link_right_collision_00" class="collision" quat="0 0 1 0" />
         <body name="openarm_right_link1" pos="0 -0.0625 0">
-          <inertial mass="0.561428544234246" fullinertia="0.000538144986433873 0.000373345162254971 0.000329804343882795 4.63056685765756e-06 2.22975551768159e-08 3.27884751984609e-08" pos="0.000900350355624244 -0.0444659716892874 2.88441021165683e-05" />
+          <inertial pos="0.00090035 -0.044466 2.88441e-05" quat="0.999901 0.000371041 -5.04627e-05 0.0140338" mass="1.14167" diaginertia="0.00109459 0.000758935 0.000670659" />
           <joint name="openarm_right_joint1" pos="0 0 0" axis="0 -1 0" range="-1.3963 3.4907" actuatorfrcrange="-40 40" class="motor_DM8009" />
           <geom name="link1_right_00" type="mesh" mesh="link1_right_00" class="visual" material="matte_black" />
           <geom name="link1_right_01" type="mesh" mesh="link1_right_01" class="visual" material="pale_silver" />
           <geom name="link1_right_02" type="mesh" mesh="link1_right_02" class="visual" material="metal_silver" />
           <geom name="link1_right_collision_00" type="mesh" mesh="link1_right_collision_00" class="collision" />
           <body name="openarm_right_link2" pos="0 -0.0600000000000001 0">
-            <inertial mass="0.295592749115978" fullinertia="0.000163597219145931 0.000120429707158439 8.76628866864578e-05 -3.13608197607031e-10 5.55009912371659e-06 4.00306455289745e-10" pos="-0.0247184924346635 7.60578399428002e-08 -0.0312643102292087" />
+            <inertial pos="-0.0247185 7.60578e-08 -0.0312643" quat="0.999342 6.47495e-06 -0.0362804 -3.02331e-06" mass="0.277509" diaginertia="0.000153968 0.000113062 8.19211e-05" />
             <joint name="openarm_right_joint2" pos="0 0 0" axis="-1 0 0" range="-0.17453 3.3161" actuatorfrcrange="-40 40" class="motor_DM8009" />
             <geom name="link2_right_00" type="mesh" mesh="link2_right_00" class="visual" material="matte_black" />
             <geom name="link2_right_01" type="mesh" mesh="link2_right_01" class="visual" material="metal_silver" />
             <geom name="link2_right_02" type="mesh" mesh="link2_right_02" class="visual" material="pale_silver" />
             <geom name="link2_right_collision_00" type="mesh" mesh="link2_right_collision_00" class="collision" />
             <body name="openarm_right_link3" pos="0 0 -0.0662500000000008">
-              <inertial mass="0.850916861288263" fullinertia="0.0010217027340552 0.000903473277290975 0.000443551676668759 -1.82210543854634e-07 -5.35782873075177e-05 -8.4199828452717e-06" pos="-0.00300861804638783 -0.000514813312550808 -0.109368241429434" />
+              <inertial pos="-0.00300862 -0.000514813 -0.109368" quat="0.998906 -0.00891348 0.0458105 0.00280505" mass="1.07386" diaginertia="0.00129561 0.00114038 0.000553361" />
               <joint name="openarm_right_joint3" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708" actuatorfrcrange="-27 27" class="motor_DM4340" />
               <geom name="link3_right_00" type="mesh" mesh="link3_right_00" class="visual" material="matte_black" />
               <geom name="link3_right_01" type="mesh" mesh="link3_right_01" class="visual" material="metal_silver" />
               <geom name="link3_right_02" type="mesh" mesh="link3_right_02" class="visual" material="pale_silver" />
               <geom name="link3_right_collision_00" type="mesh" mesh="link3_right_collision_00" class="collision" />
               <body name="openarm_right_link4" pos="0 0 -0.15375">
-                <inertial mass="0.590845933035621" fullinertia="0.000436492657493736 0.00040384685548561 0.000228213573513934 5.2455675270269e-06 -1.65547634348731e-06 3.18067426068364e-06" pos="-0.00310326243752606 -0.00136538979048502 -0.0574601379354351" />
+                <inertial pos="-0.00310326 -0.00136539 -0.0574601" quat="0.996952 0.00947325 0.00348083 0.0773554" mass="0.634853" diaginertia="0.000469894 0.000433114 0.000245134" />
                 <joint name="openarm_right_joint4" pos="0 0 0" axis="0 -1 0" range="0 2.4435" actuatorfrcrange="-27 27" class="motor_DM4340" />
                 <geom name="link4_right_00" type="mesh" mesh="link4_right_00" class="visual" material="matte_black" />
                 <geom name="link4_right_01" type="mesh" mesh="link4_right_01" class="visual" material="pale_silver" />
                 <geom name="link4_right_02" type="mesh" mesh="link4_right_02" class="visual" material="metal_silver" />
                 <geom name="link4_right_collision_00" type="mesh" mesh="link4_right_collision_00" class="collision" />
                 <body name="openarm_right_link5" pos="0 0 -0.0955000000000005">
-                  <inertial mass="0.5803968030561" fullinertia="0.000263636157719515 0.000315435352726595 0.00016654408109665 3.12744502166655e-06 7.24104361181618e-07 -1.41346881493762e-07" pos="-0.000737188580130584 -0.000412406544351845 -0.047093829077211" />
+                  <!-- Steel flange estimate: 0.05 kg, radius (56 mm / 2) * 2/3, thickness 6 mm. -->
+                  <!-- COM assumed at joint5 output origin; disk normal is local Z. Motor housing stays on link4. -->
+                  <inertial pos="0 0 0" mass="0.05" diaginertia="0.00000450555555555556 0.00000450555555555556 0.00000871111111111111" />
                   <joint name="openarm_right_joint5" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708" actuatorfrcrange="-7 7" class="motor_DM4310" />
                   <body name="Hand_R_base_link" pos="-0.005 0 -0.180" quat="0.707106781185 -0.707106781188 0 0">
                     <body name="HOUSING-R" pos="-0.18 0 0">
-                      <inertial pos="0.1837865 -0.0862771 -0.0016055" mass="0.5561357" fullinertia="0.0010606 0.0004326 0.0012833 0.0000006 0 -0.0000165" />
+                      <!-- User-specified housing mass; original inertia scaled by 1.8 / 0.5561357. -->
+                      <inertial pos="0.1837865 -0.0862771 -0.0016055" mass="1.8" fullinertia="0.00343275930676632 0.0014001618669688 0.00415355460906394 1.94197207623967e-06 0 -5.34042320965908e-05" />
                       <geom name="HOUSING-R_visual" type="mesh" mesh="HOUSING-R_visual" contype="0" conaffinity="0" group="1" density="0" material="matte_black" />
                       <geom name="HOUSING-R_collision" type="mesh" mesh="HOUSING-R_collision" contype="1" conaffinity="1" group="3" material="matte_black" />
                       <body name="WRIST-PALM-R" pos="0.1838 -0.00041 -0.00127">
@@ -593,50 +600,50 @@
     <position name="right_joint3_ctrl" joint="openarm_right_joint3" class="position_DM4340" kp="190" kv="14" ctrllimited="true" ctrlrange="-1.5708 1.5708" />
     <position name="right_joint4_ctrl" joint="openarm_right_joint4" class="position_DM4340" kp="190" kv="14" ctrllimited="true" ctrlrange="0 2.44346" />
     <position name="right_joint5_ctrl" joint="openarm_right_joint5" class="position_DM4310" kp="30" kv="1.5" ctrllimited="true" ctrlrange="-1.5708 1.5708" />
-    <position name="WRIST-PALM-L_ctrl" joint="WRIST-PALM-L" kp="13.2" kv="0.403969" inheritrange="1.0" />
-    <position name="PALM-L_ctrl" joint="PALM-L" kp="6.95" kv="0.284653" inheritrange="1.0" />
-    <position name="F1-L-MCP2_ctrl" joint="F1-L-MCP2" kp="6.62" kv="0.240344" inheritrange="1.0" />
-    <position name="F1-L-MCP1_ctrl" joint="F1-L-MCP1" kp="4.76" kv="0.203818" inheritrange="1.0" />
-    <position name="F1-L-PIP_ctrl" joint="F1-L-PIP" kp="0.9" kv="0.0418901" inheritrange="1.0" />
-    <position name="F1-L-DIP_ctrl" joint="F1-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
-    <position name="F2-L-MCP2_ctrl" joint="F2-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
-    <position name="F2-L-MCP1_ctrl" joint="F2-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
-    <position name="F2-L-PIP_ctrl" joint="F2-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
-    <position name="F2-L-DIP_ctrl" joint="F2-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
-    <position name="F3-L-MCP2_ctrl" joint="F3-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
-    <position name="F3-L-MCP1_ctrl" joint="F3-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
-    <position name="F3-L-PIP_ctrl" joint="F3-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
-    <position name="F3-L-DIP_ctrl" joint="F3-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
-    <position name="F4-L-MCP2_ctrl" joint="F4-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
-    <position name="F4-L-MCP1_ctrl" joint="F4-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
-    <position name="F4-L-PIP_ctrl" joint="F4-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
-    <position name="F4-L-DIP_ctrl" joint="F4-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
-    <position name="F5-L-MCP2_ctrl" joint="F5-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
-    <position name="F5-L-MCP1_ctrl" joint="F5-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
-    <position name="F5-L-PIP_ctrl" joint="F5-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
-    <position name="F5-L-DIP_ctrl" joint="F5-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
-    <position name="WRIST-PALM-R_ctrl" joint="WRIST-PALM-R" kp="13.2" kv="0.403969" inheritrange="1.0" />
-    <position name="PALM-R_ctrl" joint="PALM-R" kp="6.95" kv="0.284653" inheritrange="1.0" />
-    <position name="F1-R-MCP2_ctrl" joint="F1-R-MCP2" kp="6.62" kv="0.240344" inheritrange="1.0" />
-    <position name="F1-R-MCP1_ctrl" joint="F1-R-MCP1" kp="4.76" kv="0.203818" inheritrange="1.0" />
-    <position name="F1-R-PIP_ctrl" joint="F1-R-PIP" kp="0.9" kv="0.0418901" inheritrange="1.0" />
-    <position name="F1-R-DIP_ctrl" joint="F1-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
-    <position name="F2-R-MCP2_ctrl" joint="F2-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
-    <position name="F2-R-MCP1_ctrl" joint="F2-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
-    <position name="F2-R-PIP_ctrl" joint="F2-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
-    <position name="F2-R-DIP_ctrl" joint="F2-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
-    <position name="F3-R-MCP2_ctrl" joint="F3-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
-    <position name="F3-R-MCP1_ctrl" joint="F3-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
-    <position name="F3-R-PIP_ctrl" joint="F3-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
-    <position name="F3-R-DIP_ctrl" joint="F3-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
-    <position name="F4-R-MCP2_ctrl" joint="F4-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
-    <position name="F4-R-MCP1_ctrl" joint="F4-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
-    <position name="F4-R-PIP_ctrl" joint="F4-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
-    <position name="F4-R-DIP_ctrl" joint="F4-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
-    <position name="F5-R-MCP2_ctrl" joint="F5-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" />
-    <position name="F5-R-MCP1_ctrl" joint="F5-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" />
-    <position name="F5-R-PIP_ctrl" joint="F5-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" />
-    <position name="F5-R-DIP_ctrl" joint="F5-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" />
+    <position name="WRIST-PALM-L_ctrl" joint="WRIST-PALM-L" kp="13.2" kv="0.403969" inheritrange="1.0" forcelimited="true" forcerange="-12 12" />
+    <position name="PALM-L_ctrl" joint="PALM-L" kp="6.95" kv="0.284653" inheritrange="1.0" forcelimited="true" forcerange="-10 10" />
+    <position name="F1-L-MCP2_ctrl" joint="F1-L-MCP2" kp="6.62" kv="0.240344" inheritrange="1.0" forcelimited="true" forcerange="-6.5 6.5" />
+    <position name="F1-L-MCP1_ctrl" joint="F1-L-MCP1" kp="4.76" kv="0.203818" inheritrange="1.0" forcelimited="true" forcerange="-6 6" />
+    <position name="F1-L-PIP_ctrl" joint="F1-L-PIP" kp="0.9" kv="0.0418901" inheritrange="1.0" forcelimited="true" forcerange="-3.5 3.5" />
+    <position name="F1-L-DIP_ctrl" joint="F1-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" forcelimited="true" forcerange="-1.7 1.7" />
+    <position name="F2-L-MCP2_ctrl" joint="F2-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" forcelimited="true" forcerange="-6 6" />
+    <position name="F2-L-MCP1_ctrl" joint="F2-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" forcelimited="true" forcerange="-5.5 5.5" />
+    <position name="F2-L-PIP_ctrl" joint="F2-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" forcelimited="true" forcerange="-3 3" />
+    <position name="F2-L-DIP_ctrl" joint="F2-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" forcelimited="true" forcerange="-1.5 1.5" />
+    <position name="F3-L-MCP2_ctrl" joint="F3-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" forcelimited="true" forcerange="-6 6" />
+    <position name="F3-L-MCP1_ctrl" joint="F3-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" forcelimited="true" forcerange="-5.5 5.5" />
+    <position name="F3-L-PIP_ctrl" joint="F3-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" forcelimited="true" forcerange="-3 3" />
+    <position name="F3-L-DIP_ctrl" joint="F3-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" forcelimited="true" forcerange="-1.5 1.5" />
+    <position name="F4-L-MCP2_ctrl" joint="F4-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" forcelimited="true" forcerange="-6 6" />
+    <position name="F4-L-MCP1_ctrl" joint="F4-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" forcelimited="true" forcerange="-5.5 5.5" />
+    <position name="F4-L-PIP_ctrl" joint="F4-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" forcelimited="true" forcerange="-3 3" />
+    <position name="F4-L-DIP_ctrl" joint="F4-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" forcelimited="true" forcerange="-1.5 1.5" />
+    <position name="F5-L-MCP2_ctrl" joint="F5-L-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" forcelimited="true" forcerange="-6 6" />
+    <position name="F5-L-MCP1_ctrl" joint="F5-L-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" forcelimited="true" forcerange="-5.5 5.5" />
+    <position name="F5-L-PIP_ctrl" joint="F5-L-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" forcelimited="true" forcerange="-3 3" />
+    <position name="F5-L-DIP_ctrl" joint="F5-L-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" forcelimited="true" forcerange="-1.5 1.5" />
+    <position name="WRIST-PALM-R_ctrl" joint="WRIST-PALM-R" kp="13.2" kv="0.403969" inheritrange="1.0" forcelimited="true" forcerange="-12 12" />
+    <position name="PALM-R_ctrl" joint="PALM-R" kp="6.95" kv="0.284653" inheritrange="1.0" forcelimited="true" forcerange="-10 10" />
+    <position name="F1-R-MCP2_ctrl" joint="F1-R-MCP2" kp="6.62" kv="0.240344" inheritrange="1.0" forcelimited="true" forcerange="-6.5 6.5" />
+    <position name="F1-R-MCP1_ctrl" joint="F1-R-MCP1" kp="4.76" kv="0.203818" inheritrange="1.0" forcelimited="true" forcerange="-6 6" />
+    <position name="F1-R-PIP_ctrl" joint="F1-R-PIP" kp="0.9" kv="0.0418901" inheritrange="1.0" forcelimited="true" forcerange="-3.5 3.5" />
+    <position name="F1-R-DIP_ctrl" joint="F1-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" forcelimited="true" forcerange="-1.7 1.7" />
+    <position name="F2-R-MCP2_ctrl" joint="F2-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" forcelimited="true" forcerange="-6 6" />
+    <position name="F2-R-MCP1_ctrl" joint="F2-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" forcelimited="true" forcerange="-5.5 5.5" />
+    <position name="F2-R-PIP_ctrl" joint="F2-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" forcelimited="true" forcerange="-3 3" />
+    <position name="F2-R-DIP_ctrl" joint="F2-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" forcelimited="true" forcerange="-1.5 1.5" />
+    <position name="F3-R-MCP2_ctrl" joint="F3-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" forcelimited="true" forcerange="-6 6" />
+    <position name="F3-R-MCP1_ctrl" joint="F3-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" forcelimited="true" forcerange="-5.5 5.5" />
+    <position name="F3-R-PIP_ctrl" joint="F3-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" forcelimited="true" forcerange="-3 3" />
+    <position name="F3-R-DIP_ctrl" joint="F3-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" forcelimited="true" forcerange="-1.5 1.5" />
+    <position name="F4-R-MCP2_ctrl" joint="F4-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" forcelimited="true" forcerange="-6 6" />
+    <position name="F4-R-MCP1_ctrl" joint="F4-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" forcelimited="true" forcerange="-5.5 5.5" />
+    <position name="F4-R-PIP_ctrl" joint="F4-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" forcelimited="true" forcerange="-3 3" />
+    <position name="F4-R-DIP_ctrl" joint="F4-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" forcelimited="true" forcerange="-1.5 1.5" />
+    <position name="F5-R-MCP2_ctrl" joint="F5-R-MCP2" kp="6.62" kv="0.245070" inheritrange="1.0" forcelimited="true" forcerange="-6 6" />
+    <position name="F5-R-MCP1_ctrl" joint="F5-R-MCP1" kp="4.76" kv="0.207842" inheritrange="1.0" forcelimited="true" forcerange="-5.5 5.5" />
+    <position name="F5-R-PIP_ctrl" joint="F5-R-PIP" kp="0.9" kv="0.0423151" inheritrange="1.0" forcelimited="true" forcerange="-3 3" />
+    <position name="F5-R-DIP_ctrl" joint="F5-R-DIP" kp="0.9" kv="0.0350406" inheritrange="1.0" forcelimited="true" forcerange="-1.5 1.5" />
   </actuator>
   <contact>
     <exclude body1="HOUSING-L" body2="WRIST-PALM-L" />
@@ -749,6 +756,6 @@
     <exclude body1="openarm_body_link0" body2="F5-R-DIP" />
   </contact>
   <keyframe>
-    <key name="home" qpos="0.0 0.0 0.0 1.570796 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.570796 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0" />
+    <key name="home" qpos="0.0 0.0 0.0 1.570796 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.570796 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0" ctrl="0 0 0 1.570796 0 0 0 0 1.570796 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0" />
   </keyframe>
 </mujoco>

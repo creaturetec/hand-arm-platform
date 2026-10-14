@@ -1,6 +1,6 @@
 # OpenArm + Hand Bimanual Dexterous Hand
 
-Bimanual robot model: two 5-DoF OpenArm arms + two 22-DoF dexterous hands. 54 total DoF, ready for MuJoCo simulation and RL training.
+Bimanual robot model: two 5-DoF OpenArm arms + two 22-DoF dexterous hands. 54 total DoF, with a tested MuJoCo simulation baseline. See the [physical parameter assumptions](doc/KNOWN_ISSUES.md#arm-inertia-baseline-and-hardware-assumptions) before hardware transfer.
 
 ## Quick Start
 
@@ -21,10 +21,14 @@ assert model.nq == 54  # generalized coords
 assert model.nv == 54  # generalized velocities
 assert model.nu == 54  # actuators (= ctrl vector length)
 
-# Send a control command (all position actuators)
-data.ctrl[:] = 0.0
+# Load both the home pose and its matching position targets.
+mujoco.mj_resetDataKeyframe(model, data, model.key("home").id)
 mujoco.mj_step(model, data)
 ```
+
+Gravity is enabled (`0 0 -9.81`). Position servos can have a small steady-state error under gravity; the model does not add gravity compensation. `simulate` loads the zero pose unless a keyframe is selected.
+
+Run the model checks with `python scripts/check_model.py` in a Python environment with MuJoCo and NumPy installed.
 
 ## Model at a Glance
 
@@ -33,11 +37,11 @@ mujoco.mj_step(model, data)
 | Configuration | Bimanual: 2 × 5-DoF arm + 2 × 22-DoF hand |
 | Total DoF | 54 (all hinge/revolute) |
 | Bodies | 62 |
-| Geoms | 133 (visual + collision) |
-| Actuators | 54 position actuators |
+| Geoms | 132 (visual + collision) |
+| Actuators | 54 position actuators, all with force limits |
 | Recommended format | **MJCF** (`openarm_hand_bimanual.xml`) |
 | URDF available | Yes, but limited — see [Known Issues](doc/KNOWN_ISSUES.md) |
-| MuJoCo compatibility | ≥ 2.3.x |
+| MuJoCo validation | 3.3.3 native compiler; 3.5.0 Python dynamics |
 
 ## Repository Layout
 
