@@ -66,7 +66,7 @@
   <worldbody>
     <body name="base_link">
       <body name="HOUSING-L">
-        <inertial pos="-1.11e-05 -0.085871 -0.0003395" mass="0.5561357" fullinertia="0.0010606 0.0004326 0.0012833 0.0000006 0 -0.0000165"/>
+        <inertial pos="-1.11e-05 -0.085871 -0.0003395" mass="1.8" fullinertia="0.00343275930676632 0.0014001618669688 0.00415355460906394 1.94197207623967e-06 0 -5.34042320965908e-05"/>
         <geom name="HOUSING-L_visual" type="mesh" mesh="HOUSING-L_visual" contype="0" conaffinity="0" group="1" density="0" rgba="0.79215686 0.81960784 0.93333333 1.00000000"/>
         <geom name="HOUSING-L_collision" type="mesh" mesh="HOUSING-L_collision" contype="1" conaffinity="1" group="3" rgba="0.79215686 0.81960784 0.93333333 1.00000000"/>
         <body name="WRIST-PALM-L">

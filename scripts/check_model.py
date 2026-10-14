@@ -69,7 +69,17 @@ def main():
         original_hand = ET.parse(ROOT / f"Hand/Hand_{side}/MJCF_{side[0].upper()}.xml").getroot()
         original_housing = original_hand.find(f".//body[@name='{hand_name}']/inertial")
         np.testing.assert_allclose(model.body_ipos[housing_id], np.fromstring(original_housing.get("pos"), sep=" "))
-        expected = np.fromstring(original_housing.get("fullinertia"), sep=" ") * (1.8 / float(original_housing.get("mass")))
+        # Keep the original CAD tensor as the independent scaling baseline.
+        expected = np.array([0.0010606, 0.0004326, 0.0012833, 0.0000006, 0, -0.0000165]) * (1.8 / 0.5561357)
+        assert float(original_housing.get("mass")) == 1.8
+        np.testing.assert_allclose(np.fromstring(original_housing.get("fullinertia"), sep=" "), expected, atol=1e-14)
+        standalone = mujoco.MjModel.from_xml_path(str(ROOT / f"Hand/Hand_{side}/MJCF_{side[0].upper()}.xml"))
+        assert standalone.body(hand_name).mass[0] == 1.8
+        standalone_urdf = ET.parse(ROOT / f"Hand/Hand_{side}/URDF_{side[0].upper()}.urdf").getroot()
+        item = standalone_urdf.find(f"link[@name='{hand_name}']/inertial")
+        assert float(item.find("mass").get("value")) == 1.8
+        np.testing.assert_allclose(np.fromstring(item.find("origin").get("xyz"), sep=" "), model.body_ipos[housing_id])
+        np.testing.assert_allclose([float(item.find("inertia").get(axis)) for axis in ("ixx", "iyy", "izz", "ixy", "ixz", "iyz")], expected, atol=1e-14)
         expected_tensor = np.array([
             [expected[0], expected[3], expected[4]],
             [expected[3], expected[1], expected[5]],
