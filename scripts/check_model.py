@@ -17,6 +17,41 @@ def inertia_tensor(model, body_id):
     return rotation @ np.diag(model.body_inertia[body_id]) @ rotation.T
 
 
+def arm_inertia(reference, name):
+    """Replace the J4/J5 motor cylinders in the upstream rigid-body baseline."""
+    body = reference.body(name)
+    mass = float(body.mass[0])
+    com = body.ipos.copy()
+    tensor = inertia_tensor(reference, body.id)
+    if name.endswith("_link3"):
+        old_mass, old_height, old_radius, axis = 0.362, 0.0533, 0.0285, 1
+        old_com = np.array([0, -0.00485, -0.15375])
+        new_com = np.array([0, -0.00325, -0.15375])
+    elif name.endswith("_link4"):
+        old_mass, old_height, old_radius, axis = 0.300, 0.046, 0.028, 2
+        old_com = np.array([0, 0, -0.0725])
+        new_com = np.array([0, 0, -0.06725])
+    else:
+        return mass, com, tensor
+    first_moment = mass * com
+    tensor += mass * (np.dot(com, com) * np.eye(3) - np.outer(com, com))
+    # shortcut: uniform motor cylinders at OpenArm output faces, revise only if the adopted modeling policy changes.
+    for sign, part_mass, radius, height, center in (
+        (-1, old_mass, old_radius, old_height, old_com),
+        (1, 0.381, 0.0285, 0.0565, new_com),
+    ):
+        principal = np.full(3, part_mass * (3 * radius**2 + height**2) / 12)
+        principal[axis] = part_mass * radius**2 / 2
+        mass += sign * part_mass
+        first_moment += sign * part_mass * center
+        tensor += sign * (np.diag(principal) + part_mass * (
+            np.dot(center, center) * np.eye(3) - np.outer(center, center)
+        ))
+    com = first_moment / mass
+    tensor -= mass * (np.dot(com, com) * np.eye(3) - np.outer(com, com))
+    return mass, com, tensor
+
+
 def main():
     model = mujoco.MjModel.from_xml_path(
         str(ROOT / "bimanualHand/openarm_hand_bimanual.xml")
@@ -31,11 +66,12 @@ def main():
     for side in ("left", "right"):
         for suffix in ["base_link", "link1", "link2", "link3", "link4"]:
             name = f"openarm_{side}_{suffix}"
-            target_id, source_id = model.body(name).id, reference.body(name).id
-            np.testing.assert_allclose(model.body_mass[target_id], reference.body_mass[source_id])
-            np.testing.assert_allclose(model.body_ipos[target_id], reference.body_ipos[source_id])
+            target_id = model.body(name).id
+            expected_mass, expected_com, expected_tensor = arm_inertia(reference, name)
+            np.testing.assert_allclose(model.body_mass[target_id], expected_mass)
+            np.testing.assert_allclose(model.body_ipos[target_id], expected_com)
             tensor = inertia_tensor(model, target_id)
-            np.testing.assert_allclose(tensor, inertia_tensor(reference, source_id))
+            np.testing.assert_allclose(tensor, expected_tensor, atol=1e-14)
             item = urdf.find(f"link[@name='{name}']/inertial")
             assert float(item.find("mass").get("value")) == model.body_mass[target_id]
             np.testing.assert_allclose(
@@ -50,7 +86,7 @@ def main():
             np.testing.assert_allclose(tensor, urdf_tensor, atol=1e-14)
         output_name = f"openarm_{side}_link5"
         output = model.body(output_name).id
-        flange_mass, flange_radius, flange_thickness = 0.05, 0.056 / 2 * (2 / 3), 0.006
+        flange_mass, flange_radius, flange_thickness = 0.0445, 0.02408, 0.01248
         disk_inertia = flange_mass * flange_radius**2 * np.array([0.25, 0.25, 0.5])
         disk_inertia[:2] += flange_mass * flange_thickness**2 / 12
         assert model.body_mass[output] == flange_mass
@@ -96,6 +132,18 @@ def main():
     joints = model.actuator_trnid[:, 0]
     qpos_ids = model.jnt_qposadr[joints]
     assert model.actuator_forcelimited.all()
+    arm_actuators = np.array([2, 3, 4, 7, 8, 9])
+    for side in ("left", "right"):
+        for number in (3, 4, 5):
+            name = f"openarm_{side}_joint{number}"
+            assert xml.find(f".//joint[@name='{name}']").get("class") == "motor_DM4340P"
+            actuator = xml.find(f"actuator/position[@joint='{name}']")
+            assert actuator.get("class") == "position_DM4340P"
+            np.testing.assert_allclose(model.jnt_actfrcrange[model.joint(name).id], [-27, 27])
+            limit = urdf.find(f"joint[@name='{name}']/limit")
+            assert float(limit.get("effort")) == 27
+            np.testing.assert_allclose(float(limit.get("velocity")), 100 * 2 * np.pi / 60)
+    np.testing.assert_allclose(model.actuator_forcerange[arm_actuators], [[-27, 27]] * 6)
     for actuator in range(10, model.nu):
         name = model.joint(int(joints[actuator])).name
         effort = float(urdf.find(f"joint[@name='{name}']/limit").get("effort"))
@@ -120,16 +168,18 @@ def main():
         assert error < 3, f"excessive arm drift in {pose}: {error:.3f} deg"
         print(f"{pose}: 5 s stable, maximum arm tracking error {error:.3f} deg")
 
-    # Prove that wrist/finger servos saturate under a large position error.
+    # Exercise both the upgraded arm motors and the wrist/finger torque limits.
     for column in (0, 1):
         mujoco.mj_resetDataKeyframe(model, data, model.key("home").id)
         data.ctrl[10:] = model.actuator_ctrlrange[10:, column]
+        data.ctrl[arm_actuators] = model.actuator_ctrlrange[arm_actuators, column]
         mujoco.mj_forward(model, data)
         assert np.all(data.actuator_force >= model.actuator_forcerange[:, 0] - 1e-9)
         assert np.all(data.actuator_force <= model.actuator_forcerange[:, 1] + 1e-9)
         assert np.any(np.isclose(
             np.abs(data.actuator_force[10:]), model.actuator_forcerange[10:, 1]
         )), "torque saturation was not exercised"
+        assert np.any(np.isclose(np.abs(data.actuator_force[arm_actuators]), 27)), "arm torque saturation was not exercised"
     print("PASS: inertia tensors, fixed-child payload, home mapping and torque limits")
 
 

@@ -12,7 +12,7 @@ worldbody
     │       └── openarm_left_link2        ← joint2 (shoulder pitch)
     │           └── openarm_left_link3    ← joint3 (upper arm rotation)
     │               └── openarm_left_link4  ← joint4 (elbow)
-    │                   └── openarm_left_link5  ← joint5 output frame + 0.05 kg flange
+    │                   └── openarm_left_link5  ← joint5 output frame + 0.0445 kg flange
     │                       └── Hand_L_base_link
     │                           └── HOUSING-L
     │                               └── WRIST-PALM-L      ← wrist rotation
@@ -42,7 +42,8 @@ worldbody
 
 Key observations:
 - Each arm is a **serial chain** of 5 links ending at the hand housing
-- `link5` has no own geom; its inertia represents an estimated 0.05 kg steel flange on each side, approximated as a uniform disk of radius 18.6667 mm and thickness 6 mm centered on joint5. The original downstream assembly was removed. Each fixed `HOUSING` child contributes 1.8 kg with its own inertia, while the joint5 motor housing remains on the link4 side. See `KNOWN_ISSUES.md` for the flange and housing assumptions.
+- J3–J5 use DM4340P configuration. J4 motor replacement changes link3 to 1.09286 kg; J5 motor replacement changes link4 to 0.715853 kg, with COM and inertia recomputed by cylinder subtraction/addition. J3 already used a P motor in the source assembly. OpenArm mounting geometry is adopted without extra compensation; DM4340P properties are retained. See `KNOWN_ISSUES.md` for the chosen distribution and installation policy.
+- `link5` has no own geom; each flange has a user-measured mass of 0.0445 kg, radius of 24.08 mm, and thickness of 12.48 mm. Its inertia is approximated as a uniform disk, with its center of mass still assumed at joint5. The original downstream assembly was removed. Each fixed `HOUSING` child contributes 1.8 kg with its own inertia, while the joint5 motor housing remains on the link4 side. See `KNOWN_ISSUES.md` for the flange measurements and remaining assumptions.
 - Each hand has **5 parallel finger chains** branching from `PALM`
 - Each finger is a **serial chain** of 4 links (MCP2 → MCP1 → PIP → DIP)
 - Thumb (F1) has a different joint axis configuration from F2–F5

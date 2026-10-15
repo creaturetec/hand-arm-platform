@@ -28,6 +28,8 @@ mujoco.mj_step(model, data)
 
 Gravity is enabled (`0 0 -9.81`). Position servos can have a small steady-state error under gravity; the model does not add gravity compensation. `simulate` loads the zero pose unless a keyframe is selected.
 
+J3–J5 use DM4340P configuration with ±27 N·m peak force caps. Link3/link4 mass properties include approximate motor replacement corrections; the measured 44.5 g output flange remains separate. See the physical assumptions before treating this as a calibrated hardware model.
+
 Run the model checks with `python scripts/check_model.py` in a Python environment with MuJoCo and NumPy installed.
 
 ## Model at a Glance
@@ -41,7 +43,7 @@ Run the model checks with `python scripts/check_model.py` in a Python environmen
 | Actuators | 54 position actuators, all with force limits |
 | Recommended format | **MJCF** (`openarm_hand_bimanual.xml`) |
 | URDF available | Yes, but limited — see [Known Issues](doc/KNOWN_ISSUES.md) |
-| MuJoCo validation | 3.3.3 native compiler; 3.5.0 Python dynamics |
+| MuJoCo validation | 3.16.0 Python dynamics (DM4340P revision) |
 
 ## Repository Layout
 

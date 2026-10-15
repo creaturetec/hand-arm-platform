@@ -14,14 +14,16 @@ All 54 actuators are **position servos** (`<position>` in MJCF). Set `data.ctrl[
 |:----:|---------------|-------|-------|-------------|---:|---:|:-----------:|
 | 0 | `left_joint1_ctrl` | `openarm_left_joint1` | DM8009 | [−3.491, 1.396] | 230 | 14 | ±40 |
 | 1 | `left_joint2_ctrl` | `openarm_left_joint2` | DM8009 | [−3.316, 0.175] | 230 | 12 | ±40 |
-| 2 | `left_joint3_ctrl` | `openarm_left_joint3` | DM4340 | [−1.571, 1.571] | 190 | 14 | ±27 |
-| 3 | `left_joint4_ctrl` | `openarm_left_joint4` | DM4340 | [0, 2.444] | 190 | 14 | ±27 |
-| 4 | `left_joint5_ctrl` | `openarm_left_joint5` | DM4310 | [−1.571, 1.571] | 30 | 1.5 | ±7 |
+| 2 | `left_joint3_ctrl` | `openarm_left_joint3` | DM4340P | [−1.571, 1.571] | 190 | 14 | ±27 |
+| 3 | `left_joint4_ctrl` | `openarm_left_joint4` | DM4340P | [0, 2.444] | 190 | 14 | ±27 |
+| 4 | `left_joint5_ctrl` | `openarm_left_joint5` | DM4340P | [−1.571, 1.571] | 30 | 1.5 | ±27 |
 | 5 | `right_joint1_ctrl` | `openarm_right_joint1` | DM8009 | [−1.396, 3.491] | 230 | 14 | ±40 |
 | 6 | `right_joint2_ctrl` | `openarm_right_joint2` | DM8009 | [−0.175, 3.316] | 230 | 12 | ±40 |
-| 7 | `right_joint3_ctrl` | `openarm_right_joint3` | DM4340 | [−1.571, 1.571] | 190 | 14 | ±27 |
-| 8 | `right_joint4_ctrl` | `openarm_right_joint4` | DM4340 | [0, 2.444] | 190 | 14 | ±27 |
-| 9 | `right_joint5_ctrl` | `openarm_right_joint5` | DM4310 | [−1.571, 1.571] | 30 | 1.5 | ±7 |
+| 7 | `right_joint3_ctrl` | `openarm_right_joint3` | DM4340P | [−1.571, 1.571] | 190 | 14 | ±27 |
+| 8 | `right_joint4_ctrl` | `openarm_right_joint4` | DM4340P | [0, 2.444] | 190 | 14 | ±27 |
+| 9 | `right_joint5_ctrl` | `openarm_right_joint5` | DM4340P | [−1.571, 1.571] | 30 | 1.5 | ±27 |
+
+J3–J5 are DM4340P on both sides. Their ±27 N·m limits use the peak rating (rated continuous torque is 9 N·m). URDF velocity limits use the 48 V no-load 100 rpm envelope, 10.471975511966 rad/s; MJCF position actuators do not enforce velocity limits. Joint-specific kp/kv are retained. The P motor class adopts the existing 4340-family loss/armature reference values; see `KNOWN_ISSUES.md` for motor properties and the OpenArm installation policy.
 
 ### Left Hand Actuators (indices 10–31) — with force limits
 
