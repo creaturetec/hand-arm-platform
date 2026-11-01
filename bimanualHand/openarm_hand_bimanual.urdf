@@ -889,7 +889,7 @@
   <joint name="F1-L-MCP1" type="revolute">
     <parent link="F1-L-MCP2" />
     <child link="F1-L-MCP1" />
-    <origin xyz="-0.0049195 0.0066407 0.010162" rpy="2.3078 1.1797 2.2689" />
+    <origin xyz="-0.0059732 0.0078965 0.0085751" rpy="2.3078 1.3542 2.2689" />
     <axis xyz="1 0 0" />
     <limit lower="-0.6108652" upper="0.8726646" effort="6.0" velocity="3.84" />
     <dynamics damping="0.0781" friction="0.1200" />
@@ -913,7 +913,7 @@
   <joint name="F2-L-MCP2" type="revolute">
     <parent link="PALM-L" />
     <child link="F2-L-MCP2" />
-    <origin xyz="0.04512 0.078019 0.00395" rpy="3.1416 0 2.8798" />
+    <origin xyz="0.04512 0.078019 0.00395" rpy="3.1416 0 3.0543" />
     <axis xyz="0 0 1" />
     <limit lower="-0.6981317" upper="0.6981317" effort="6.0" velocity="3.59" />
     <dynamics damping="0.0836" friction="0.1200" />
@@ -977,7 +977,7 @@
   <joint name="F4-L-MCP2" type="revolute">
     <parent link="PALM-L" />
     <child link="F4-L-MCP2" />
-    <origin xyz="0.0059875 0.078019 0.00395" rpy="3.1416 0 3.4034" />
+    <origin xyz="0.0059875 0.078019 0.00395" rpy="3.1416 0 3.2289" />
     <axis xyz="0 0 1" />
     <limit lower="-0.6981317" upper="0.5235988" effort="6.0" velocity="3.59" />
     <dynamics damping="0.0836" friction="0.1200" />
@@ -1009,7 +1009,7 @@
   <joint name="F5-L-MCP2" type="revolute">
     <parent link="PALM-L" />
     <child link="F5-L-MCP2" />
-    <origin xyz="-0.01361 0.063366 0.00395" rpy="3.1416 0 3.7350" />
+    <origin xyz="-0.01361 0.063366 0.00395" rpy="3.1416 0 3.2812" />
     <axis xyz="0 0 1" />
     <limit lower="-0.6981317" upper="0.6981317" effort="6.0" velocity="3.59" />
     <dynamics damping="0.0836" friction="0.1200" />
@@ -1582,7 +1582,7 @@
   <joint name="F1-R-MCP1" type="revolute">
     <parent link="F1-R-MCP2" />
     <child link="F1-R-MCP1" />
-    <origin xyz="0.0050544 0.0068014 0.0101617" rpy="0 0 0" />
+    <origin xyz="0.006106 0.0080547 0.0085384" rpy="-0.1343 0.1119 -0.0075" />
     <axis xyz="-0.2450208 -0.2920044 0.9244989" />
     <limit lower="-0.6108652" upper="0.8726646" effort="6.0" velocity="3.84" />
     <dynamics damping="0.0781" friction="0.1200" />
@@ -1606,7 +1606,7 @@
   <joint name="F2-R-MCP2" type="revolute">
     <parent link="PALM-R" />
     <child link="F2-R-MCP2" />
-    <origin xyz="0.0475313 0.0778613 0.0023" rpy="0 0 -0.2618" />
+    <origin xyz="0.0475313 0.0778613 0.0023" rpy="0 0 -0.0873" />
     <axis xyz="0 0 -1" />
     <limit lower="-0.6981317" upper="0.6981317" effort="6.0" velocity="3.59" />
     <dynamics damping="0.0836" friction="0.1200" />
@@ -1670,7 +1670,7 @@
   <joint name="F4-R-MCP2" type="revolute">
     <parent link="PALM-R" />
     <child link="F4-R-MCP2" />
-    <origin xyz="0.008399 0.0778613 0.0023" rpy="0 0 0.2618" />
+    <origin xyz="0.008399 0.0778613 0.0023" rpy="0 0 0.0873" />
     <axis xyz="0 0 -1" />
     <limit lower="-0.6981317" upper="0.5235988" effort="6.0" velocity="3.59" />
     <dynamics damping="0.0836" friction="0.1200" />
@@ -1702,7 +1702,7 @@
   <joint name="F5-R-MCP2" type="revolute">
     <parent link="PALM-R" />
     <child link="F5-R-MCP2" />
-    <origin xyz="-0.0111988 0.0632092 0.0023" rpy="0 0 0.5934" />
+    <origin xyz="-0.0111988 0.0632092 0.0023" rpy="0 0 0.1396" />
     <axis xyz="0 0 -1" />
     <limit lower="-0.6981317" upper="0.6981317" effort="6.0" velocity="3.59" />
     <dynamics damping="0.0836" friction="0.1200" />

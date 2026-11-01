@@ -142,12 +142,14 @@ The nonzero neutral spread of F2, F4, and F5 is encoded in the URDF joint `origi
 
 | MCP2 joint | Right URDF `rpy` (rad) | Left URDF `rpy` (rad) | Physical neutral offset |
 |------------|--------------------------|-------------------------|-------------------------|
-| F2 | `0 0 −0.2618` | `3.1416 0 2.8798` | right −15°, left +15° |
+| F2 | `0 0 −0.0873` | `3.1416 0 3.0543` | right −5°, left +5° |
 | F3 | `0 0 0` | `3.1416 0 3.1416` | 0° |
-| F4 | `0 0 0.2618` | `3.1416 0 3.4034` | right +15°, left −15° |
-| F5 | `0 0 0.5934` | `3.1416 0 3.7350` | right +34°, left −34° |
+| F4 | `0 0 0.0873` | `3.1416 0 3.2289` | right +5°, left −5° |
+| F5 | `0 0 0.1396` | `3.1416 0 3.2812` | right +8°, left −8° |
 
 The left-hand RPY values include the existing mirrored-link transform (`roll ≈ π`).
+
+**2026-11-01 neutral-pose revision.** The design reduces the neutral spread from F2 15°, F4 15°, F5 34° to F2 5°, F4 5°, F5 8° (F3 stays 0°). The thumb has no row above because its neutral MCP2 abduction is carried by the `F1-{L,R}-MCP1` joint origin, which sits downstream of the `F1-MCP2` joint: the revision rotates that origin by −10° about the MCP2 axis (design value 20° → 10°), giving `xyz="-0.0059732 0.0078965 0.0085751" rpy="2.3078 1.3542 2.2689"` for the left and `xyz="0.006106 0.0080547 0.0085384" rpy="-0.1343 0.1119 -0.0075"` for the right. Measured against the palm plane, the thumb long-axis abduction is 19.6° before and 9.6° after the revision; the roughly 0.4° difference from the nominal joint value comes from the exported link geometry, not from a modelling choice.
 
 ---
 
