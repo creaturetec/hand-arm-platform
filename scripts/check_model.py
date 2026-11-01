@@ -17,6 +17,63 @@ def inertia_tensor(model, body_id):
     return rotation @ np.diag(model.body_inertia[body_id]) @ rotation.T
 
 
+def check_thumb_assembly(model, urdf, side):
+    # Original CAD transform between the thumb's MCP2 and MCP1 components.
+    expected = {
+        "L": ([-0.0049195, 0.0066407, 0.010162],
+              [0.6031565987, 0.1170050762, 0.783841507, 0.09002456069]),
+        "R": ([0.0050544, 0.0068014, 0.0101617], [1, 0, 0, 0]),
+    }
+    child = model.body(f"F1-{side}-MCP1")
+    position, quaternion = expected[side]
+    np.testing.assert_allclose(child.pos, position, atol=1e-9)
+    np.testing.assert_allclose(abs(np.dot(child.quat, quaternion)), 1, atol=1e-10, rtol=0)
+
+    # URDF RPY uses extrinsic XYZ, equivalent to Rz(yaw) Ry(pitch) Rx(roll).
+    for part in ("MCP2", "MCP1"):
+        name = f"F1-{side}-{part}"
+        body = model.body(name)
+        origin = urdf.find(f"joint[@name='{name}']/origin")
+        np.testing.assert_allclose(body.pos, np.fromstring(origin.get("xyz"), sep=" "), atol=1e-9)
+        quat = np.empty(4)
+        mujoco.mju_euler2Quat(quat, np.fromstring(origin.get("rpy"), sep=" "), "XYZ")
+        np.testing.assert_allclose(abs(np.dot(body.quat, quat)), 1, atol=1e-9, rtol=0)
+
+    data = mujoco.MjData(model)
+    mujoco.mj_forward(model, data)
+    palm = data.body(f"PALM-{side}").xmat.reshape(3, 3)
+    axis = palm.T @ (data.body(f"F1-{side}-PIP").xpos - data.body(f"F1-{side}-MCP1").xpos)
+    angle = np.degrees(np.arcsin(axis[2] / np.linalg.norm(axis)))
+    np.testing.assert_allclose(abs(angle), 9.58, atol=0.03, rtol=0)
+
+
+def check_hand_limits(model, urdf, side):
+    """Check the supplied limits in degrees for every hand joint and actuator."""
+    limits = {
+        f"WRIST-PALM-{side}": (-70, 70),
+        f"PALM-{side}": (-45, 45),
+    }
+    thumb = {"MCP2": (-25, 45), "MCP1": (-35, 50),
+             "PIP": (-30, 75), "DIP": (-25, 80)}
+    for part, bounds in thumb.items():
+        limits[f"F1-{side}-{part}"] = bounds
+    for finger, mcp2 in ((2, (-30, 40)), (3, (-40, 35)),
+                         (4, (-40, 30)), (5, (-40, 30))):
+        for part, bounds in {"MCP2": mcp2, "MCP1": (-35, 95),
+                             "PIP": (-5, 105), "DIP": (-5, 75)}.items():
+            limits[f"F{finger}-{side}-{part}"] = bounds
+
+    for name, bounds in limits.items():
+        joint = model.joint(name)
+        actuator = model.actuator(name + "_ctrl")
+        limit = urdf.find(f"joint[@name='{name}']/limit")
+        urdf_bounds = [float(limit.get("lower")), float(limit.get("upper"))]
+        assert model.jnt_limited[joint.id], f"unlimited joint {name}"
+        assert model.actuator_ctrllimited[actuator.id], f"unlimited target for {name}"
+        for actual in (joint.range, actuator.ctrlrange, urdf_bounds):
+            np.testing.assert_allclose(np.rad2deg(actual), bounds, atol=1e-4, rtol=0, err_msg=name)
+
+
 def arm_inertia(reference, name):
     """Replace the J4/J5 motor cylinders in the upstream rigid-body baseline."""
     body = reference.body(name)
@@ -64,6 +121,8 @@ def main():
     np.testing.assert_allclose(model.opt.gravity, [0, 0, -9.81])
 
     for side in ("left", "right"):
+        check_thumb_assembly(model, urdf, side[0].upper())
+        check_hand_limits(model, urdf, side[0].upper())
         for suffix in ["base_link", "link1", "link2", "link3", "link4"]:
             name = f"openarm_{side}_{suffix}"
             target_id = model.body(name).id
@@ -112,6 +171,8 @@ def main():
         standalone = mujoco.MjModel.from_xml_path(str(ROOT / f"Hand/Hand_{side}/MJCF_{side[0].upper()}.xml"))
         assert standalone.body(hand_name).mass[0] == 1.8
         standalone_urdf = ET.parse(ROOT / f"Hand/Hand_{side}/URDF_{side[0].upper()}.urdf").getroot()
+        check_thumb_assembly(standalone, standalone_urdf, side[0].upper())
+        check_hand_limits(standalone, standalone_urdf, side[0].upper())
         item = standalone_urdf.find(f"link[@name='{hand_name}']/inertial")
         assert float(item.find("mass").get("value")) == 1.8
         np.testing.assert_allclose(np.fromstring(item.find("origin").get("xyz"), sep=" "), model.body_ipos[housing_id])
@@ -180,7 +241,7 @@ def main():
             np.abs(data.actuator_force[10:]), model.actuator_forcerange[10:, 1]
         )), "torque saturation was not exercised"
         assert np.any(np.isclose(np.abs(data.actuator_force[arm_actuators]), 27)), "arm torque saturation was not exercised"
-    print("PASS: inertia tensors, fixed-child payload, home mapping and torque limits")
+    print("PASS: hand ranges, inertia tensors, fixed-child payload, home mapping and torque limits")
 
 
 if __name__ == "__main__":

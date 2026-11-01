@@ -73,10 +73,10 @@ MCP2 ab/adduction limits vary by finger:
 
 | Finger | Range (deg) | Range (rad) |
 |--------|-------------|-------------|
-| F2 (index) | [−40°, +40°] | [−0.6981317, 0.6981317] |
+| F2 (index) | [−30°, +40°] | [−0.5235988, 0.6981317] |
 | F3 (middle) | [−40°, +35°] | [−0.6981317, 0.6108652] |
 | F4 (ring) | [−40°, +30°] | [−0.6981317, 0.5235988] |
-| F5 (pinky) | [−40°, +40°] | [−0.6981317, 0.6981317] |
+| F5 (pinky) | [−40°, +30°] | [−0.6981317, 0.5235988] |
 
 ---
 
@@ -149,7 +149,7 @@ The nonzero neutral spread of F2, F4, and F5 is encoded in the URDF joint `origi
 
 The left-hand RPY values include the existing mirrored-link transform (`roll ≈ π`).
 
-**2026-11-01 neutral-pose revision.** The design reduces the neutral spread from F2 15°, F4 15°, F5 34° to F2 5°, F4 5°, F5 8° (F3 stays 0°). The thumb has no row above because its neutral MCP2 abduction is carried by the `F1-{L,R}-MCP1` joint origin, which sits downstream of the `F1-MCP2` joint: the revision rotates that origin by −10° about the MCP2 axis (design value 20° → 10°), giving `xyz="-0.0059732 0.0078965 0.0085751" rpy="2.3078 1.3542 2.2689"` for the left and `xyz="0.006106 0.0080547 0.0085384" rpy="-0.1343 0.1119 -0.0075"` for the right. Measured against the palm plane, the thumb long-axis abduction is 19.6° before and 9.6° after the revision; the roughly 0.4° difference from the nominal joint value comes from the exported link geometry, not from a modelling choice.
+**2026-11-01 neutral-pose revision.** The design reduces the neutral spread from F2 15°, F4 15°, F5 34° to F2 5°, F4 5°, F5 8° (F3 stays 0°). The thumb's `F1-{L,R}-MCP2` joint origin is rotated by −10° about its joint axis (design value 20° → 10°). The original MCP2-to-MCP1 transform is retained so the joint components remain aligned. Measured against the palm plane, the thumb long-axis abduction is about 19.6° before and 9.6° after the revision; the requested nominal angle is 10°. The supplied joint limits above are applied relative to the revised zero; verify that this zero matches the hardware calibration before physical use.
 
 ---
 
